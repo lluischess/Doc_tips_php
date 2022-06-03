@@ -5,24 +5,17 @@
 # 2) PHP abreviado para formularios HTML
 # 3) Imprimir valores con var_dump() y print_r()
 # 4) Saltos de linea o tabulador en un String
-# 5) Function con paramaetros opcionales
-# 6) La mejor Practica con funciones es el return
-# 7) Variables locales, globales y Constantes, Constantes predefinidas
-# 8) Funciones variables ejemplo
-# 9) Funciones para fechas
-# 10) Funciones Matematicas
-# 11) Mas funciones Predefinidas
-# 12) Include y require
-# 13) Arrays
-# 14) Arrays Multidimensionales
-# 15) Funciones para Arrays
-# 16) Redireccionar Pagina web
-# 17) Cifrar contraseña
-# 18) Guardar string sin espacios
-# 19) Recortar String caracteres
-# 20) Clase predefinida para hacer pruebas stdClass()
-# 21) Concatenación de cadenas, comillas simples(') vs comillas dobles(")
-# 22) Definicion de tus programas
+# 5) Variables locales, globales y Constantes, Constantes predefinidas
+# 6) Fechas
+# 7) Funciones Matematicas
+# 8) Mas funciones Predefinidas
+# 9) Include y require
+# 10) Redireccionar Pagina web
+# 11) Cifrar contraseña
+# 12) Guardar string sin espacios
+# 13) Recortar String caracteres
+# 14) Concatenación de cadenas, comillas simples(') vs comillas dobles(")
+# 15) Definicion de tus programas
 
 
 
@@ -75,42 +68,7 @@ print_r($a);
 $text = "Soy un texto y \n HOla \t Salto de tabulador";
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 5) Function con paramaetros opcionales
-
-# El tercer parametro es opcional ya que predeterminadamente sera false
-# Ejemplo:
-function sumar($numero1, $numero2, $numero3 = false){ 
-    if ( $numero3 == false ) { 
-        $resul = "<h1>" . ($numero1 + $numero2) . "</h1>";
-    }else{
-        $resul = "<h1>" . ($numero1 + $numero2 + $numero3) . "</h1>";
-    }
-    return $resul;
-}
-
-$resultado = sumar(2, 3);
-$resultado = sumar(3, 3, 4);
-
-
-#----------------------------------------------------------------------------------------------------------------------------------------------
-# 6) La mejor Practica con funciones es el return
-
-# Es primordial que una función retorne siempre un valor ya que es una funcionalidad
-# Ejemplo:
-function sumar2($numero1, $numero2, $numero3 = false){ 
-  if ( $numero3 == false ) { 
-        $resul = "<h1>" . ($numero1 + $numero2) . "</h1>";
-    }else{
-        $resul = "<h1>" . ($numero1 + $numero2 + $numero3) . "</h1>";
-    }
-    return $resul;
-}
-
-sumar(2, 3);
-
-
-#----------------------------------------------------------------------------------------------------------------------------------------------
-# 7) Variables locales, globales y Constantes, Constantes predefinidas
+# 5) Variables locales, globales y Constantes, Constantes predefinidas
 
 # Variable local
 $frase = "<h1>Hola soy Luis</h1>";
@@ -134,23 +92,7 @@ function hola(){
  echo __FILE__; // la ruta y el nombre del archivo
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 8) Funciones variables ejemplo
-# Se puede guardar una función en una variable
-function buenosdias(){ 
-  return "Hola buenos dias";
-}
-
-function buenasnoches(){ 
-  return "Buenas noches";
-}
-# Guardamos el nombre de la funcion en una variable y luego la llamamos con la misma variable
-$funcion_saludos = "buenasnoches";
-
-echo $funcion_saludos();
-
-
-#----------------------------------------------------------------------------------------------------------------------------------------------
-# 9) Funciones para fechas
+# 6) Fechas
 
 # Formato de fecha:
 echo date('d-m-y') . "<br>";
@@ -163,7 +105,7 @@ echo time();
  
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 10) Funciones Matematicas
+# 7) Funciones Matematicas
 
 # Reiz cuadrada de un numero
 echo "Raiz cuadrada de 10 es: ". sqrt(10); 
@@ -180,7 +122,7 @@ echo "Redondear ".round(7.5812312,2);
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 11) Mas funciones Predefinidas
+# 8) Mas funciones Predefinidas
 
 #gettype() devuelve el tipo de variable que es
 $tabla = [];
@@ -215,136 +157,22 @@ echo strtoupper($frase);
 echo strtolower($frase);
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 12) Include y require
+# 9) Include y require
 
 include '<EjerciciosBasicos>/Ejercicio1.php'; // lo incluye siempre y las veces que quieras
 include_once '<EjerciciosBasicos>/Ejercicio1.php'; // solo puede incluirse una vez
 require '<EjerciciosBasicos>/Ejercicio1.php'; // es necesario para continuar
 
-
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 13) Arrays
-
-$pelicula = "spiderman";
-
-# Definir un array 2 formas:
-$peliculas = array('batman',$pelicula,'batman2');
-$cantantes = ['Justin','selena','lady gaga'];
-
-#Array asociativo
-$personas = array(
-  'nombre' => 'luis',
-  'apellido' => 'casamajor',
-  'edad'  => '27'
-);
-
-#array completa
-var_dump($peliculas);
-var_dump($cantantes);
-
-# sacar valores de un array
-var_dump($peliculas[1]);
-echo $peliculas[0];
-
-# Añadir elementos a la Array 2 maneras
-$peliculas[] = 'pokemon';
-array_push($peliculas,'digimon');
-var_dump($peliculas);
-
-#Eliminar el ultimo registro
-array_pop($peliculas);
-var_dump($peliculas);
-
-#Eliminar el indice que quieras
-unset($peliculas[2]);
-var_dump($peliculas);
-
-# Recorrer un array sencilla 2 maneras:
-for ($i=0; $i < count($peliculas); $i++) { 
-  echo "<li>" . $peliculas[$i] . "</li>";
-}
-
-foreach ($cantantes as $cantante) {
-  echo "<li>" . $cantante . "</li>";
-}
-
-foreach ($personas as $persona) {
-  echo "<li>" . $persona . "</li>";
-}
-
-
-#----------------------------------------------------------------------------------------------------------------------------------------------
-# 14) Arrays Multidimensionales
-
-$contactos = array(
-  array(
-    'nombre' => 'luis',
-    'email' => 'casamajor@email.com',
-  ),
-  array(
-    'nombre' => 'loco',
-    'email' => 'casamajor@email.com',
-  ),
-  array(
-    'nombre' => 'luis',
-    'email' => 'casamajor@email.com',
-  )
-);
-
-var_dump($contactos);
-
-# imprimir un json de una array multidimensional
-echo json_encode($contactos);
-# acceder a un contacto de un array multidemensional
-echo $contactos[1]['nombre'];
-
-# Recorrer un array multidimensional:
-foreach ($contactos as $key => $contacto){ 
-  echo "<br>" . $contacto['nombre'];
-  echo "<br>" . $contacto['email'];
-
-}
-
-#----------------------------------------------------------------------------------------------------------------------------------------------
-# 15) Funciones para Arrays
-$cantantes = ['Justin','selena','lady gaga'];
-$num = [4,3,2,1];
-
-# Orden alfabetico A - Z
-asort($cantantes);
-var_dump($cantantes);
-
-# Orden alfabetico inverso Z - A
-arsort($cantantes);
-var_dump($cantantes);
-
-# Orden numerico 1 - max
-sort($num);
-var_dump($num);
-
-# Sacr un elemento aleatorio de un array
-echo array_rand($cantantes);
-
-# Revertir el Array dar la vuelta
-var_dump(array_reverse($peliculas));
-
-# Buscar dentro de un array
-echo array_search('selena',$cantantes);
-
-# Longitut de un array
-echo count($num);
-
-
-#----------------------------------------------------------------------------------------------------------------------------------------------
-# 16) Redireccionar Pagina web
+# 10) Redireccionar Pagina web
 
 header('Location:ver_cookies.php');
 header("Location:" . $domain . 'userController/registro');
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 17) Cifrar contraseña
+# 11) Cifrar contraseña
 
- #                          Password /    Encriptación    / pasadas de encriptado
+ #   password_hash(Password,Encriptación,pasadas de encriptado)
  $password_segura = password_hash($pass, PASSWORD_BCRYPT, ['cost'=>4]);
 
  # Descifrar contraseña y comparar la password
@@ -352,33 +180,24 @@ header("Location:" . $domain . 'userController/registro');
  password_verify($pass,$password_segura);
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 18) Guardar string sin espacios
+# 12) Guardar string sin espacios
 
 trim($email);
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 19) Recortar String caracteres
+# 13) Recortar String caracteres
 
 substr($entrada['fDesc'],0,200);
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 20) Clase predefinida para hacer pruebas stdClass()
-
-# Es una clase predefinida sin atributos ni metodos.
-# Y la podemos usar cuando queremos crear un objeto genérico al que después podemos agregar propiedades.
-
-$objeto = new stdClass();
-$objeto->color = 'Rojo'; // ahora que esta definido este atributo lo podemos reutilizar para cualquier cosa
-
-#----------------------------------------------------------------------------------------------------------------------------------------------
-# 21) Concatenación de cadenas, comillas simples(') vs comillas dobles(")
+# 14) Concatenación de cadenas, comillas simples(') vs comillas dobles(")
 
 # Cuando trabajes con cadenas, evita siempre el uso de comillas dobles. 
 # La razón es que PHP analiza el contenido de las comillas dobles en búsqueda de variables que deban ser interpretadas, resultando en un tiempo de ejecución mayor.
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 22) Definicion de tus programas
+# 15) Definicion de tus programas
 
 # Los nombres de las clases en MixedCase. Ejemplo: ElNombreDeMiClase
 # Los nombres de los métodos en camelCase. Ejempo: nombreDelMetodo()
