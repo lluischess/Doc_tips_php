@@ -1,7 +1,7 @@
 <?php
 
 # INDEX 
-# 1) Typed Properties
+# 1) Typed Properties(Variables con tipos de dato unicos)
 # 2) Arrow Functions
 # 3) Null Operator
 # 4) Spread operator
@@ -9,14 +9,31 @@
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 1) Typed Properties
-# se le puede añadir el tipo de variable que es es de tipo coche y ya no se podra modificar el tipo de variable
- 
+# 1) Typed Properties(Variables con tipos de dato unicos)
+
+# Se le puede añadir el tipo de variable que es, es de tipo coche y ya no se podra modificar el tipo de variable
+# Solo están disponibles en clases y requieren un modificador de acceso: public, protectedo private; ovar
+# Todos los tipos están permitidos, excepto voidycallable
+
 # private Coche $coche;
 
 # ? delante para decir que puede ser null
+# private ?Coche $coche;
 
- # private ?Coche $coche;
+class Foo
+{
+    # Variable publica que es un int
+    public int $a;
+
+    # Variable publica que es un string pero puede ser null
+    public ?string $b = 'foo';
+
+    # La variable $prop es de tipo Foo objeto y privada
+    private Foo $prop;
+
+    # La variable $static es protegida y statica y un string
+    protected static string $static = 'default';
+}
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 2) Arrow Functions
