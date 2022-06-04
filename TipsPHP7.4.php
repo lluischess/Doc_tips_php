@@ -38,6 +38,20 @@ class Foo
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 2) Arrow Functions
 
+# Las funciones de flecha fueron introducidas en PHP 7.4 como una sintaxis más concisa para las funciones anónimas.
+
+# Ejemplo 1
+$y = 1;
+
+$fn1 = fn($x) => $x + $y;
+// equivalent to using $y by value:
+$fn2 = function ($x) use ($y) {
+    return $x + $y;
+};
+
+var_export($fn1(3));
+
+# Ejemplo 2
 class coche {
 
 }
@@ -69,16 +83,19 @@ function arrowfunctions() {
 
 $request = [
     'nombre' => 'alejandro',
-    'edad' => 33
+    'edad' => 33,
+    'cat' => null
 ];
 
 
 # Antes
+# Si existe la categoria sera igual a la categoria pero si no sera 'categoria por defecto'
 $request['cat'] = $request['cat'] ? $request['cat'] : 'categoria por defecto';
-# si no esta la categoria pon el string
+
+# Esto es lo mismo que lo de arriba
 $request['cat'] = $request['cat'] ?? 'categoria por defecto';
 
-# 7.4 
+# 7.4 Esto es lo mismo que lo de arriba
 $request['cat'] ??='categoria por defecto';
 
 
@@ -88,10 +105,20 @@ $request['cat'] ??='categoria por defecto';
 $frutas = ['peras'];
 $mas = ['platanos','manzanas'];
 
-# Antes
-$todos = array_merge($frutas,$mas);
+# Antes Furión de dos Arrays
+$todas = array_merge($frutas,$mas);
 
-# 7.4
-$todas = [$frutas, ...$mas];
+# 7.4 Fusion de 2 arrays
+$todas = [...$frutas,...$mas];
+
+# RESULTADO:
+/*
+Array
+(
+    [0] => peras
+    [1] => platanos
+    [2] => manzanas
+)
+*/
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
