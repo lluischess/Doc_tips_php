@@ -269,6 +269,10 @@ $obj2->printHello();   // Muestra Public2, Protected2, Undefined
 # name_category
 # date_created_category
 
+# 4 Si tenemos claves foraneas relacionadas con otras tablas deben añadirse asi: id_(nombre de la tabla relacionada)_(Nombre de la tabla actual)
+# Por ejemplo de la tabla PRODUCTOS:
+# id_category_product
+# id_store_product
 
 
 
