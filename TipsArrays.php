@@ -4,7 +4,8 @@
 # 1) Arrays y como iterar
 # 2) Arrays Multidimensionales
 # 3) Funciones para Arrays
-# 4) 
+# 4) Iterar arrays sencillas
+# 5) Iterar arrays asociativos
 
 
 
@@ -89,6 +90,41 @@ $contactos = array(
     echo "<br>" . $contacto['email'];
   
   }
+
+  for ($lineas = 0; $lineas < count($contactos); $lineas++ ){
+    echo "<p><b>Row $lineas</b></p>";
+    echo "<ul>";
+    foreach ($contactos[$lineas] as $key => $value){
+        echo "<li>".$key.":   ".$value."</li>";
+    }
+    echo "</ul>";
+  }
+
+
+  $espanya = ['€' => 'desc_ES'];
+  $paises = [
+    'espanya' => $espanya, 
+    'usa' => "dollar", 
+    'brasil' => "R$", 
+    'canada' => "C$", 
+    'colombia' => "COP", 
+    'hongkong' => "HK$", 
+    'hungria' => "HUF", 
+    'rusia' => "R$", 
+    'singapur' => "S$", 
+    'sudafrica' => "ZAR", 
+    'mexico' => "MXN", 
+    'argentina' => "ARS"];
+
+  foreach ($paises as $nombre => $valor) {
+    if (is_array($valor)){
+      foreach ($valor as $moneda => $desc) {
+          print "el pais es $nombre, la moneda $moneda y descr $desc.<br />\n";
+      }
+    }else {
+      echo $nombre ." ". $valor. '<br>\n';
+    }
+ }
   
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 3) Funciones para Arrays
@@ -118,6 +154,43 @@ echo array_search('selena',$cantantes);
 
 # Longitut de un array
 echo count($num);
+
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 4) Iterar arrays sencillas
+
+$frutas = array('Pera','Melocoton','Fresas','Manzanas');
+$length = count($frutas);
+
+for ($x = 0; $x < $length; $x++){
+    echo $frutas[$x];
+    echo '<br>';
+}
+
+foreach( $frutas as $key ){
+  echo $key."\n";
+}
+
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 5) Iterar arrays asociativos
+
+$array = array(
+  "1" => "PHP code tester",
+  "emojis" => "😀 😃 😄 😁 😆",
+  5,
+  5 => 53456,
+  "Random number" => rand(100,200),
+  "PHP version" => phpversion()
+);
+
+# \t=>\t de tabulador a tabulador
+# $key es el indice
+# $value es el valor
+foreach ($array as $key => $value){
+  echo $key . "\t=>\t" . $value . "\n";
+}
+
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------

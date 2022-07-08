@@ -17,6 +17,7 @@
 # 14) Concatenación de cadenas, comillas simples(') vs comillas dobles(")
 # 15) Definicion de tus programas
 # 16) Visivilidad Public Private y protected
+# 17) La Creación de las Bases de datos deben ser con esta nomenclatura
 
 
 
@@ -255,8 +256,18 @@ $obj2->printHello();   // Muestra Public2, Protected2, Undefined
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
+# 17) La Creación de las Bases de datos deben ser con esta nomenclatura
 
+# 1 Siempre en Ingles
 
+# 2 Los Nombres de las tablas en minusculas y en plural:
+# categories
+# products
+
+# 3 Los campos de las tablas siempre en singular con (_sufijo)
+# id_category
+# name_category
+# date_created_category
 
 
 
