@@ -18,6 +18,7 @@
 # 15) Definicion de tus programas
 # 16) Visivilidad Public Private y protected
 # 17) La Creación de las Bases de datos deben ser con esta nomenclatura
+# 18) Añadir esto en los forms para subir imagenes al servidor
 
 
 
@@ -273,6 +274,12 @@ $obj2->printHello();   // Muestra Public2, Protected2, Undefined
 # Por ejemplo de la tabla PRODUCTOS:
 # id_category_product
 # id_store_product
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 18) Añadir esto en los forms para subir imagenes al servidor
+
+# enctype="multipart/form-data">
+# <form method="POST" action="{{ route('user.update') }}" enctype="multipart/form-data">
+
 
 
 
