@@ -7,6 +7,7 @@
 # 4) Lanzar excepciones nuevas
 # 5) Match expresions
 # 6) classes y propiedades
+# 7) Excepciones mejoradas
 
 
 
@@ -47,9 +48,15 @@ if (null !== $user){
     throw new Exception();
 }
 
-# 8.0
+# 8.0 no hace falta asignar una variable a la excepcion
 
 # echo $user ?? throw new Exception();
+
+try {
+    // Something goes wrong
+    } catch (Exception) {
+    // Just continue
+    }
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 5) Match expresions
@@ -98,4 +105,14 @@ class Persona {
 
 //     }{}
 // }
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 7) Excepciones mejoradas
+
+// Invalid before PHP 8
+#$name = $input['name'] ?? throw new NameNotFound();
+// Valid as of PHP 8
+$name = $input['name'] ?? throw new NameNotFound();
+
+$error = fn (string $class) => throw new $class();
+
 #----------------------------------------------------------------------------------------------------------------------------------------------
