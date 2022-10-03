@@ -19,6 +19,8 @@
 # 16) Visivilidad Public Private y protected
 # 17) La Creación de las Bases de datos deben ser con esta nomenclatura
 # 18) Añadir esto en los forms para subir imagenes al servidor
+# 19) Otra Manera de utilizar comillas dobles en php para una query
+
 
 
 
@@ -279,10 +281,15 @@ $obj2->printHello();   // Muestra Public2, Protected2, Undefined
 
 # enctype="multipart/form-data">
 # <form method="POST" action="{{ route('user.update') }}" enctype="multipart/form-data">
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 19) Otra Manera de utilizar comillas dobles en php para una query
+$query = <<<SQL
+    SELECT *
+    FROM `table`
+    WHERE `column` = true;
+    SQL;
 
-
-
-
+#----------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
