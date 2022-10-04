@@ -34,6 +34,8 @@
 # Ejemplo 1  
 # Si existe el $_POST['action'] entonces guardara el valor en la variable $action
 $action = isset($_POST['action']) ? $_POST['action'] : 'action no existe';
+# Esto es lo mismo
+$action = $_POST['action'] ?? 'action no existe';
 
 # Ejemplo 2 
 # Si la variable $_POST['action'] no esta vacia guardara el valor de POST en la variable $action 
@@ -46,9 +48,7 @@ $campo = !empty($_POST['action']) ?  $_POST['action'] : 'action vacia';
 # Podemos imprimir en un HTML la variable $saludos de la siguiente manera:
 $saludos = "Hola soy una variable PHP";
 ?>  
-
 <h1><?=$saludos?></h1>  
-
 <?php
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
