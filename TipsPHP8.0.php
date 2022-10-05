@@ -8,6 +8,7 @@
 # 5) Match expresions
 # 6) classes y propiedades
 # 7) Excepciones mejoradas
+# 8) Comparaciones mejoradas
 
 
 
@@ -30,7 +31,11 @@ if (null !== $course) {
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 2) Obtener el full name class
+# PHP 5.5
 var_dump(Course::class);
+
+# PHP 8.0 podemos añadir una variable que asigne la clase
+$className = $course::class;
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
@@ -116,3 +121,11 @@ $name = $input['name'] ?? throw new NameNotFound();
 $error = fn (string $class) => throw new $class();
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
+# 8) Comparaciones mejoradas
+
+
+'foo' == 1; // true PHP 7.4 e inferior
+'foo' == 1; // false PHP 8 superior asi que mejora el comportamiento de las comparaciones
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+

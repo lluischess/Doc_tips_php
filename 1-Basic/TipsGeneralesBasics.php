@@ -20,6 +20,7 @@
 # 17) La Creación de las Bases de datos deben ser con esta nomenclatura
 # 18) Añadir esto en los forms para subir imagenes al servidor
 # 19) Otra Manera de utilizar comillas dobles en php para una query
+# 20) Comparaciónes
 
 
 
@@ -290,14 +291,17 @@ $query = <<<SQL
     SQL;
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
+# 20) Comparaciónes
+
+
+'1' == 1; // true son iguales
+
+'1' === 1; // false porque compara el tipo de dato con los tres iguales
 
 
 
 
-
-
-
-
+#----------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
