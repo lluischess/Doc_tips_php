@@ -7,6 +7,7 @@
 # 2.2) Se puede ejecutar php en terminal
 # 2.3) echo vs print
 # 2.4) Sintaxis echo
+# 2.5) Variable por referencia
 # 3) Imprimir valores con var_dump() y print_r()
 # 4) Saltos de linea o tabulador en un String
 # 5) Variables locales, globales y Constantes, Constantes predefinidas
@@ -53,6 +54,7 @@ $campo = !empty($_POST['action']) ?  $_POST['action'] : 'action vacia';
 # Podemos imprimir en un HTML la variable $saludos de la siguiente manera:
 $saludos = "Hola soy una variable PHP";
 ?>  
+<h1><?php $saludos ?></h1>
 <h1><?=$saludos?></h1>  
 <?php
 
@@ -97,6 +99,30 @@ echo 'Hello World';
 echo 'hello\'s World';
 echo "hello's World";
 
+# Printar variables
+$v = 'adios';
+#Solo con comillas dobles
+echo "hola $v";
+echo "hola {$v}";
+
+#Solo com comillas simples
+echo 'hola' . $v;
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 2.5) Variable por referencia
+
+# Sin referencia
+$x = 1;
+$y = $x;
+$x = 2;
+echo $y;
+#output: 2
+
+# con referencia
+$x = 1;
+$y = &$x; # coje el ultimo valor de x
+$x = 2;
+echo $y;
+#output: 1
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 3) Imprimir valores con var_dump() y print_r()
 
