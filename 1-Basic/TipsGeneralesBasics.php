@@ -3,6 +3,10 @@
 # INDEX 
 # 1) Variable definida o esta vacio? isset() empty()
 # 2) PHP abreviado para formularios HTML
+# 2.1) No es necesario ; cuando cierras php
+# 2.2) Se puede ejecutar php en terminal
+# 2.3) echo vs print
+# 2.4) Sintaxis echo
 # 3) Imprimir valores con var_dump() y print_r()
 # 4) Saltos de linea o tabulador en un String
 # 5) Variables locales, globales y Constantes, Constantes predefinidas
@@ -51,6 +55,47 @@ $saludos = "Hola soy una variable PHP";
 ?>  
 <h1><?=$saludos?></h1>  
 <?php
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 2.1) No es necesario ; cuando cierras php
+# Si nos fijamos la linia no finaliza con ; y funciona.
+?>
+
+<?php echo 'Hola'  ?>
+
+<?php
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 2.2) Se puede ejecutar php en terminal
+# Vas a la terminal y te diriges a la carpeta donde tenemos el fichero php
+# una vez alli codeamos esto: php archivo.php 
+# En VScode con la extension 
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 2.3) echo vs print
+# Recompiendo echo que es mas rapido que print
+
+# echo admite esto:
+echo 'hello', ' ', 'World';
+# Output: hello World
+
+echo('hola');
+# Output: hola
+
+print('hola');
+# Output: hola
+
+# El print devolvera 1 al reves no se puede
+echo print 'hola dq';
+# Output: hola dq1
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 2.4) Sintaxis echo
+
+# comillas '' es lo mas rapido
+# pero si necesitamos usar apostrofe o algo "''" meter dentro de comillas dobles
+# o antes de la comilla usar \
+echo 'Hello World';
+echo 'hello\'s World';
+echo "hello's World";
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 3) Imprimir valores con var_dump() y print_r()
