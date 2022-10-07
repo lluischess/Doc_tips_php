@@ -26,6 +26,7 @@
 # 18) Añadir esto en los forms para subir imagenes al servidor
 # 19) Otra Manera de utilizar comillas dobles en php para una query
 # 20) Comparaciónes
+# 21) Operador @ en variables y funciones
 
 
 
@@ -373,10 +374,15 @@ $query = <<<SQL
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
+# 21) Operador @ en variables y funciones
+
+# El operador @ se puede añadir delante de una funciona para que esta en el momento de se utilizada no muestre los ERRORES ni WARNINGS que pueda causar PHP
+# En Caso de PHP 8 o superior los ERRORES FATAL no son ignorados
+#Ejemplo
+@opendir('files/jpg');
+$file = @file_get_contents('none/existing/path');
 
 
-
-
-
+#----------------------------------------------------------------------------------------------------------------------------------------------
 
 ?>
