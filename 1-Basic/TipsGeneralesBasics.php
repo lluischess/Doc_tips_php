@@ -11,6 +11,7 @@
 # 3) Imprimir valores con var_dump() y print_r()
 # 4) Saltos de linea o tabulador en un String
 # 5) Variables locales, globales y Constantes, Constantes predefinidas
+# 5.1) Variable de variables
 # 6) Fechas
 # 7) Funciones Matematicas
 # 8) Mas funciones Predefinidas
@@ -182,6 +183,16 @@ function hola(){
  echo PHP_VERSION.'<br>'; // version php
  echo PHP_EXTENSION_DIR.'<br>'; // Extensiones de php instaladas
  echo __FILE__; // la ruta y el nombre del archivo
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 5.1) Variable de variables
+
+$foo = 'var';
+
+# el $$ significa que coje la definicion de la variable y la cambia por el nombre de la variable
+$$foo = 'var';
+# igual a = $var = 'var'
+
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 6) Fechas
