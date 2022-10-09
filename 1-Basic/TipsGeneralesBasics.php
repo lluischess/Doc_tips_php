@@ -160,8 +160,22 @@ function hola(){
  hola();
 
  # Definir una constante:
- define('nombre','Luis');
- echo nombre;
+ # Hay que intentar definir las constantes en mayusculas con guion bajo
+ define('NOMBRE_APP','LuisApp');
+ echo NOMBRE_APP;
+
+ # Definir una constante de otra manera:
+ const IP_APP = '172.0.0.1';
+ echo IP_APP;
+
+ # La diferencia entre las 2 es que la define puede ir dentro de bucle y la otra siempre al principio.
+ if (true){
+    define('NOMBRE_APP','LuisApp');
+ }
+
+ # Podemos preguntar si la constante esta definida con la function defined
+ defined('NOMBRE_APP'); 
+ # output: 1/true esta definida
 
  # Constantes predefinidas
  echo PHP_OS.'<br>'; // sistema operativo
