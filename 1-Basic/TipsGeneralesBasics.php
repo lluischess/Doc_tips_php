@@ -12,6 +12,7 @@
 # 4) Saltos de linea o tabulador en un String
 # 5) Variables locales, globales y Constantes, Constantes predefinidas
 # 5.1) Variable de variables
+# 5.2) Tipos de datos
 # 6) Fechas
 # 7) Funciones Matematicas
 # 8) Mas funciones Predefinidas
@@ -192,6 +193,35 @@ $foo = 'var';
 # el $$ significa que coje la definicion de la variable y la cambia por el nombre de la variable
 $$foo = 'var';
 # igual a = $var = 'var'
+
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 5.2) Tipos de datos
+
+# 4 Scalar Types
+    # bool ->  true / false
+    $boleano = true;
+    # int -> 1, 2, 3, 4, -5, 0 (sin decimales)
+    $entero = 2;
+    # float -> 2.3 - -32.22 - 0.002 
+    $decimal = 0.33;
+    # string ->  'Hola', "Hola"
+    $cadena = "Hola";
+
+    echo $boleano . '<br>';
+    echo $entero . '<br>';
+    echo $decimal . '<br>';
+    echo $cadena . '<br>';
+    
+# 4 Compound Types
+    # array
+    # object
+    # callable
+    # iterable
+
+# 2 Special Types
+    # resource
+    # null
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
