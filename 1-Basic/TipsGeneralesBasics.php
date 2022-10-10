@@ -13,6 +13,7 @@
 # 5) Variables locales, globales y Constantes, Constantes predefinidas
 # 5.1) Variable de variables
 # 5.2) Tipos de datos
+# 5.3) Type casting
 # 6) Fechas
 # 7) Funciones Matematicas
 # 8) Mas funciones Predefinidas
@@ -212,17 +213,28 @@ $$foo = 'var';
     echo $entero . '<br>';
     echo $decimal . '<br>';
     echo $cadena . '<br>';
-    
+    echo gettype($boleano);
+
 # 4 Compound Types
     # array
+    $array1 = [1,2,3.2,-0.1,'A',true];
     # object
     # callable
     # iterable
+
+    print_r($array1);
 
 # 2 Special Types
     # resource
     # null
 
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 5.3) Type casting
+# Podemos forzar la conversion de una variable añadiendo entre parentesis el tipos de dato
+
+$x = (int) '3';
+#output = 3 int
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 6) Fechas

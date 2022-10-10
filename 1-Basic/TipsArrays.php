@@ -17,6 +17,7 @@ $pelicula = "spiderman";
 # Definir un array 2 formas:
 $peliculas = array('batman',$pelicula,'batman2');
 $cantantes = ['Justin','selena','lady gaga'];
+$arrayvacia = [];
 
 #Array asociativo
 $personas = array(

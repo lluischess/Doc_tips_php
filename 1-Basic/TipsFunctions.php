@@ -4,7 +4,7 @@
 # 1) Function con paramaetros opcionales
 # 2) La mejor Practica con funciones es el return
 # 3) Funciones guardadas en variables
-# 4) 
+# 4) type jggling en function
 
 
 
@@ -56,4 +56,21 @@ function buenosdias(){
   
   echo $funcion_saludos();
   
-  
+#----------------------------------------------------------------------------------------------------------------------------------------------
+  # 4) type jggling en function
+
+  function sum(int $x, int $y){
+    return $x + $y;
+  }
+  # Aun pasandole un string lo intenta convertir en integer para sumarlos
+  # tambien le pasamos un float y lo convierte en un int
+  $sum = sum(2.5, '3');
+  var_dump($sum);
+  # output = 5
+
+  # Podemos definir que los tipos sean estrictos y no los modifique
+  # declare(strict_types=1); // declarar en la primera linea
+
+  # entonces la funcion dara error de conversion de typos
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
