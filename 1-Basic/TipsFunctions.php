@@ -77,6 +77,12 @@ function buenosdias(){
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 5) Información de parametros y retornos
 # como informarnos de lo que devuelve una funcion y que tipos de parametros tiene
+class Offer
+{
+public string $offerNumber;
+//public Money $totalPrice;
+}
+
 # El primer metodo es describir-lo en el docblock anterior para informarte de que debuelve la funcion
 /**
 * @param \App\Offer $offer
@@ -84,12 +90,13 @@ function buenosdias(){
 *
 * @return \App\Offer
 */
-// function createOffer(Offer $offer, $sendMail)
-// {
-//   // ...
-// }
+function createOffer(Offer $offer, $sendMail)
+{
+  // ...
+}
 
 # Esto podria transformarse en lo recomendado como es lo siguiente:
+# Es recomendado a partir de PHP 8
 
   // function createOffer(Offer $offer, bool $sendMail): Offer // = RETURN de la funcion
   // {
