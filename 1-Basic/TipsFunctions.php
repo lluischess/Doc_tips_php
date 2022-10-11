@@ -5,7 +5,7 @@
 # 2) La mejor Practica con funciones es el return
 # 3) Funciones guardadas en variables
 # 4) type jggling en function
-# 5) 2 Informativos de Retornos de funciones
+# 5) Información de parametros y retornos
 
 
 
@@ -75,8 +75,8 @@ function buenosdias(){
   # entonces la funcion dara error de conversion de typos
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 5) 2 Informativos de Retornos de funciones
-
+# 5) Información de parametros y retornos
+# como informarnos de lo que devuelve una funcion y que tipos de parametros tiene
 # El primer metodo es describir-lo en el docblock anterior para informarte de que debuelve la funcion
 /**
 * @param \App\Offer $offer
@@ -91,7 +91,7 @@ function buenosdias(){
 
 # Esto podria transformarse en lo recomendado como es lo siguiente:
 
-  // function createOffer(Offer $offer, bool $sendMail): Offer
+  // function createOffer(Offer $offer, bool $sendMail): Offer // = RETURN de la funcion
   // {
 
   // }
