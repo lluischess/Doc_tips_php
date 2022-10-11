@@ -5,6 +5,7 @@
 # 2) La mejor Practica con funciones es el return
 # 3) Funciones guardadas en variables
 # 4) type jggling en function
+# 5) 2 Informativos de Retornos de funciones
 
 
 
@@ -72,5 +73,29 @@ function buenosdias(){
   # declare(strict_types=1); // declarar en la primera linea
 
   # entonces la funcion dara error de conversion de typos
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 5) 2 Informativos de Retornos de funciones
+
+# El primer metodo es describir-lo en el docblock anterior para informarte de que debuelve la funcion
+/**
+* @param \App\Offer $offer
+* @param bool $sendMail
+*
+* @return \App\Offer
+*/
+// function createOffer(Offer $offer, $sendMail)
+// {
+//   // ...
+// }
+
+# Esto podria transformarse en lo recomendado como es lo siguiente:
+
+  // function createOffer(Offer $offer, bool $sendMail): Offer
+  // {
+
+  // }
+
+
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
