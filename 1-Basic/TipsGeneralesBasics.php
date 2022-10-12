@@ -14,6 +14,7 @@
 # 5.1) Variable de variables
 # 5.2) Tipos de datos
 # 5.3) Type casting
+# 5.4) Boolean
 # 6) Fechas
 # 7) Funciones Matematicas
 # 8) Mas funciones Predefinidas
@@ -235,6 +236,36 @@ $$foo = 'var';
 
 $x = (int) '3';
 #output = 3 int
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 5.4) Boolean
+$bool = -0.0; // = a False
+
+# Que se considera falso en otros tipos de datos:
+# integers 0, -0 = false
+# float 0.0, -0.0 = false
+# string '' = false
+# string '0' = false
+# array [] = false
+# null = false
+
+# i Verdadero:
+# integers el 1 como boleano pero el reso de numeros seran true por condicion
+# si hay valores en float string y array seran true
+
+if($bool){
+    echo 'es true';
+}else{
+    echo 'es false';
+}
+
+# si se intenta imprimir un boleano con echo los 2 resultados siguienes significarian lo mismo:
+echo $bool;
+echo (string) $bool;
+
+
+# para saber si es boleano o no
+$bool = false;
+var_dump(is_bool($bool));
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 6) Fechas
