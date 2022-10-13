@@ -16,6 +16,7 @@
 # 5.3) Type casting
 # 5.4) Boolean
 # 5.5) Integer
+# 5.6) Floats
 # 6) Fechas
 # 7) Funciones Matematicas
 # 8) Mas funciones Predefinidas
@@ -287,6 +288,30 @@ var_dump(is_int($x));
 # Para leer un entero mejor puedes añadir un guion bajo ya que no lo gestionara _
 $integ = 200_000_000;
 var_dump($integ);
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 5.6) Floats
+
+$x = 1.3;
+$y = 13.3e-3; // float hexadecimales
+$z = 130_000.3; // fload y separado para ser mas legibles
+
+echo PHP_FLOAT_MAX; // el valor maximo del float
+
+$x = floor((0.1 + 0.7) * 10); //output = 7,  para redondear para abajo el valor final 
+$x = ceil((0.1 + 0.7) * 10); //output = 8,  para redondear para arriba el valor final 
+
+# con esto hay que tener en cuenta que el echo de comparar bien numeros decimales es dificil y hay que entender-lo muy bien
+
+echo NAN; // Se podria dejar si alguna operación no puediese ser computada por alguna cosa especial
+echo INF; // es el valor que puede dar si calcula algo superor a PHP_FLOAT_MAX
+
+# Casting float
+$int = (float) 9;
+# O tambien se puede usar la siguiente función:
+var_dump(floatval($int));
+
+
+
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 6) Fechas
 
