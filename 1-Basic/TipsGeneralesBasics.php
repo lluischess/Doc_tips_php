@@ -15,6 +15,7 @@
 # 5.2) Tipos de datos
 # 5.3) Type casting
 # 5.4) Boolean
+# 5.5) Integer
 # 6) Fechas
 # 7) Funciones Matematicas
 # 8) Mas funciones Predefinidas
@@ -267,6 +268,25 @@ echo (string) $bool;
 $bool = false;
 var_dump(is_bool($bool));
 
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 5.5) Integer
+# integers son todos los numeros positivos y negativos sin decimales 1, -2, 3, 42242
+
+# tambien es compatible con numeros hexadecimales
+ $x = 0x2A; // = 42
+ $y = 055; // Octalnumbers
+ $d = 0b11; //numero binareos
+ $max = PHP_INT_MAX; // es el valor maximo de un int
+ echo $x . $y . $d;
+
+ # casting int los dos son lo mismo
+ $x = (int) 5;
+ $x = (integer) 5;
+var_dump(is_int($x));
+
+# Para leer un entero mejor puedes añadir un guion bajo ya que no lo gestionara _
+$integ = 200_000_000;
+var_dump($integ);
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 6) Fechas
 
