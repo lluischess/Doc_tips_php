@@ -17,6 +17,8 @@
 # 5.4) Boolean
 # 5.5) Integer
 # 5.6) Floats
+# 5.7) Strings
+# 5.8) Strings Heredoc and Nowdoc
 # 6) Fechas
 # 7) Funciones Matematicas
 # 8) Mas funciones Predefinidas
@@ -309,8 +311,55 @@ echo INF; // es el valor que puede dar si calcula algo superor a PHP_FLOAT_MAX
 $int = (float) 9;
 # O tambien se puede usar la siguiente función:
 var_dump(floatval($int));
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 5.7) Strings
 
+# Diferencias entre comillas simples y dobles
 
+# en comillas simples no se pueden añadir variables
+$firstname = 'Will';
+# en comillas dobles puedes agregar variables
+$lastname = "$firstname Smith";
+# para mejorar la lectura de la variable agregamos {}
+$lastname = "{$firstname} Smith";
+# en comillas simples seria de la siguiente forma
+$lastname2 = $firstname . ' Smith';
+
+echo $lastname2;
+
+# podemos acceder a culquier letra de la cadena mediante una array
+# por ejemplo la i
+echo "\n".$lastname2[1];
+# y para acceder desde el final de la cadena lo hacemos con negativos
+echo "\n".$lastname2[-1];
+# tambien podemos modificar las letras de la cadena accediendo a su valor
+$lastname2[-1] = 'R';
+echo $lastname2;
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 5.8) Strings Heredoc and Nowdoc
+
+# Heredoc Yes Variables:
+# se puede ejecutar html
+$x = 1;
+$y = 2;
+$text = <<<TEXT
+Line $x
+Line $y
+Line 3
+<p> <strong>H</strong>ello </p>
+TEXT;
+
+echo nl2br($text); // Genera lineas e imprime con \n por linea
+
+# Nowdoc Not variables:
+# funciona igual pero sin variabes
+$text = <<<'TEXT'
+Line $x
+Line $y
+Line 3
+TEXT;
+
+echo nl2br($text);
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 6) Fechas
