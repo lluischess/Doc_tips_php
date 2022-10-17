@@ -19,6 +19,7 @@
 # 5.6) Floats
 # 5.7) Strings
 # 5.8) Strings Heredoc and Nowdoc
+# 5.9) Null
 # 6) Fechas
 # 7) Funciones Matematicas
 # 8) Mas funciones Predefinidas
@@ -360,6 +361,26 @@ Line 3
 TEXT;
 
 echo nl2br($text);
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 5.9) Null
+
+# null constante
+$x = null;
+# comprobamos que es null
+var_dump(is_null($x));
+
+# los === iguales pueden ser una alternativa igual que la funcion isnull
+var_dump($x === null);
+
+# si una variable no a sido definida o es unset es null
+unset($x); // destruimos la variable
+var_dump($x === null); // output = null errir de no definida
+
+# Casting
+# si pasamos un valor null a otro valor el valor sera 0 o estara vacio
+$x = null;
+var_dump((int) $x); // output 0
+
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 6) Fechas
