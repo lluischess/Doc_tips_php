@@ -1,7 +1,9 @@
 <?php
 
 # INDEX 
-# 1) Arrays y como iterar
+# 1) Arrays 
+# 1.1) Como obtener la logitut de la array
+# 1.2) Como iterar
 # 2) Arrays Multidimensionales
 # 3) Funciones para Arrays
 # 4) Iterar arrays sencillas
@@ -10,10 +12,9 @@
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 1) Arrays y como iterar
+# 1) Arrays
 
 $pelicula = "spiderman";
-
 # Definir un array 2 formas:
 $peliculas = array('batman',$pelicula,'batman2');
 $cantantes = ['Justin','selena','lady gaga'];
@@ -25,19 +26,65 @@ $personas = array(
   'apellido' => 'casamajor',
   'edad'  => '27'
 );
+# Tener en cuenta que si 2 definiciones(key) son iguales la key se quedara en 1 y el ultimo valor del array
+# Ejemplo
+$array1 = [0 => '0', 1 => '1', '1' => '2'];
+print_r($array1);
+# Output
+// Array
+// (
+//     [0] => 0
+//     [1] => 2
+// )
+
+# Tener en cuenta que de los arrays asociativos si las definiciones(key) que el array hace casting de las keys y si todas las keys dan 1 pues aparece el ejemplo siguiente
+# porque combierte la key en entero y el true en int es 1 tl '1' es 1 y el float es 1
+# Ejemplo
+$array2 = [true => 'a', 1 => 'b', '1' => 'c', 1.8 => 'd'];
+print_r($array2);
+# Output
+// Array
+// (
+//     [1] => d
+// )
+
+# otra cosa a tener en cuenta esque pueden haber keys con null 
+$array3 = [null => 'hola'];
+print_r($array3);
+# Output
+// Array
+// (
+//     [] => hola
+// )
 
 #array completa
 var_dump($peliculas);
 var_dump($cantantes);
 
 # sacar valores de un array
+# Punto importante: si accedemos a una key que no existe dara error
 var_dump($peliculas[1]);
 echo $peliculas[0];
+# Podemos comprobar que existe el elemento con isset
+var_dump(isset($peliculas[3])); // False
 
-# Añadir elementos a la Array 2 maneras
+# Print array usando var_dump o print_r
+var_dump($peliculas);
+print_r($peliculas); // printa un array normal
+echo print_r($personas, true); // Cuando el return parámetro es true, esta función devolverá una cadena . De lo contrario, el valor devuelto es true booleano.
+
+# Para mejorar la legivilidad de la array en web
+echo '<pre>';
+print_r($peliculas);
+echo '</pre>';
+
+# Añadir elementos a la Array 2 maneras siempre al final de la array
 $peliculas[] = 'pokemon';
 array_push($peliculas,'digimon');
 var_dump($peliculas);
+#Se puede hacer un push a un array asociativo mediante nueva key
+$personas['email'] = 'joseluis@gmail.com';
+echo print_r($personas, true);
 
 #Eliminar el ultimo registro
 array_pop($peliculas);
@@ -47,6 +94,14 @@ var_dump($peliculas);
 unset($peliculas[2]);
 var_dump($peliculas);
 
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 1.1) Como obtener la logitut de la array
+
+# Devuelve el numero de elementos de la array
+echo count($peliculas); 
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 1.2) Como iterar
 # Recorrer un array sencilla 2 maneras:
 for ($i=0; $i < count($peliculas); $i++) { 
   echo "<li>" . $peliculas[$i] . "</li>";
