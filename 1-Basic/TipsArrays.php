@@ -4,6 +4,7 @@
 # 1) Arrays 
 # 1.1) Como obtener la logitut de la array
 # 1.2) Como iterar
+# 1.3) Casting arrays
 # 2) Arrays Multidimensionales
 # 3) Funciones para Arrays
 # 4) Iterar arrays sencillas
@@ -57,6 +58,18 @@ print_r($array3);
 //     [] => hola
 // )
 
+# Otra cosa importantissima es que el array automaticamente define las keys si no tienen key y puede pasar lo siguiente:
+$array4 = ['a', 'b', 40 => 'c', 'd', 'e'];
+print_r($array4);
+// Array
+// (
+//     [0] => a
+//     [1] => b
+//     [40] => c
+//     [41] => d
+//     [42] => e
+// )
+
 #array completa
 var_dump($peliculas);
 var_dump($cantantes);
@@ -65,8 +78,11 @@ var_dump($cantantes);
 # Punto importante: si accedemos a una key que no existe dara error
 var_dump($peliculas[1]);
 echo $peliculas[0];
-# Podemos comprobar que existe el elemento con isset
+# Podemos comprobar que existe la key y es null
 var_dump(isset($peliculas[3])); // False
+# Otra manera es la siguiente funcion Parametro1 = key Paremetro2 = array
+var_dump(array_key_exists('email', $personas));
+# La diferencia entre las 2 es que si existe la key y tiene null el isset sera false y la array_key_exists sera true
 
 # Print array usando var_dump o print_r
 var_dump($peliculas);
@@ -90,8 +106,16 @@ echo print_r($personas, true);
 array_pop($peliculas);
 var_dump($peliculas);
 
-#Eliminar el indice que quieras
+#Eliminar el primer registro, Cuidado que la fuuncion hace re-index vualve a numerarlos
+# El re-index solo afecta a los numericos
+array_shift($peliculas);
+var_dump($peliculas);
+
+#Eliminar el indice que quieras, si no le especificamos la key o index eliminara la variable completa
+# cuidado que los indices se mantienen
 unset($peliculas[2]);
+# Eliminar multiples indices
+unset($peliculas[1], $peliculas[2]);
 var_dump($peliculas);
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
@@ -114,6 +138,17 @@ foreach ($cantantes as $cantante) {
 foreach ($personas as $persona) {
   echo "<li>" . $persona . "</li>";
 }
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 1.3) Casting arrays
+
+$x = 5;
+$z = true;
+$y = 1.2;
+
+var_dump((array) $x);
+var_dump((array) $y);
+var_dump((array) $z);
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 2) Arrays Multidimensionales
