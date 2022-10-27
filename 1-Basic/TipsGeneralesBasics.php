@@ -30,12 +30,21 @@
 # 13) Recortar String caracteres
 # 14) Concatenación de cadenas, comillas simples(') vs comillas dobles(")
 # 15) Definicion de tus programas
-# 16) Visivilidad Public Private y protected
+# 16) Arithmetic Operators (+ - * / % **)
+# 16.1) Assignment Operators (= += -= *= /= %= **=)
+# 16.2) String Operators (. .=)
+# 16.3) Comparison Operators (== === != <> !=== < > <= >= <=> ?? ?:)
+# 16.4) Error control operator (@)
+# 16.6) Logical Operators (&& || ! and or xor)
+# 16.7) Bitwise Operators (& | ^ ~ << >>)
+# 16.8) Array Operators (+ == === !== <> !===)
+# 16.9) Execution Operators (``)
+# 16.10) Type Operators (instanceof)
+# 16.11) Nullsafe Operators PHP8 (?)
 # 17) La Creación de las Bases de datos deben ser con esta nomenclatura
 # 18) Añadir esto en los forms para subir imagenes al servidor
 # 19) Otra Manera de utilizar comillas dobles en php para una query
 # 20) Comparaciónes
-# 21) Operador @ en variables y funciones
 
 
 
@@ -497,52 +506,45 @@ substr($entrada['fDesc'],0,200);
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 16) Visivilidad Public Private y protected
+# 16) Arithmetic Operators (+ - * / % **)
 
-#- A los miembros de clase declarados como 'public' se puede acceder desde donde sea.
-#- A los miembros declarados como 'protected', solo desde la misma clase, mediante clases heredadas o desde la clase padre.
-#- A los miembros declarados como 'private' únicamente se puede acceder desde la clase que los definió.
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 16.1) Assignment Operators (= += -= *= /= %= **=)
 
-class MyClass
-{
-    public $public = 'Public';
-    protected $protected = 'Protected';
-    private $private = 'Private';
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 16.2) String Operators (. .=)
 
-    function printHello()
-    {
-        echo $this->public;
-        echo $this->protected;
-        echo $this->private;
-    }
-}
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 16.3) Comparison Operators (== === != <> !=== < > <= >= <=> ?? ?:)
 
-$obj = new MyClass();
-echo $obj->public;    // Funciona bien
-echo $obj->protected; // Error Fatal
-echo $obj->private;   // Error Fatal
-$obj->printHello();   // Muestra Public, Protected y Private
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 16.4) Error control operator (@)
+# El operador @ se puede añadir delante de una funciona para que esta en el momento de se utilizada no muestre los ERRORES ni WARNINGS que pueda causar PHP
+# En Caso de PHP 8 o superior los ERRORES FATAL no son ignorados
+#Ejemplo
+@opendir('files/jpg');
+$file = @file_get_contents('none/existing/path');
 
-class MyClass2 extends MyClass
-{
-    // Se pueden redeclarar las propiedades pública y protegida, pero no la privada
-    public $public = 'Public2';
-    protected $protected = 'Protected2';
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 16.5) Increment/Decrement Operators (++ --)
 
-    function printHello()
-    {
-        echo $this->public;
-        echo $this->protected;
-        echo $this->private;
-    }
-}
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 16.6) Logical Operators (&& || ! and or xor)
 
-$obj2 = new MyClass2();
-echo $obj2->public;    // Funciona bien
-echo $obj2->protected; // Error Fatal
-echo $obj2->private;   // Undefined
-$obj2->printHello();   // Muestra Public2, Protected2, Undefined
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 16.7) Bitwise Operators (& | ^ ~ << >>)
 
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 16.8) Array Operators (+ == === !== <> !===)
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 16.9) Execution Operators (``)
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 16.10) Type Operators (instanceof)
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 16.11) Nullsafe Operators PHP8 (?)
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 17) La Creación de las Bases de datos deben ser con esta nomenclatura
@@ -587,13 +589,7 @@ $query = <<<SQL
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 21) Operador @ en variables y funciones
-
-# El operador @ se puede añadir delante de una funciona para que esta en el momento de se utilizada no muestre los ERRORES ni WARNINGS que pueda causar PHP
-# En Caso de PHP 8 o superior los ERRORES FATAL no son ignorados
-#Ejemplo
-@opendir('files/jpg');
-$file = @file_get_contents('none/existing/path');
+# 21)
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
