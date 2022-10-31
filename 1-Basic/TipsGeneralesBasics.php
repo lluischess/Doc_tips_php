@@ -507,15 +507,51 @@ substr($entrada['fDesc'],0,200);
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 16) Arithmetic Operators (+ - * / % **)
+$z = 4;
+$x = 2;
+
+var_dump($z + $x);
+var_dump($z - $x);
+var_dump($z / $x); // ERROR si divides por 0
+var_dump($z % $x); // RESTO del resultado
+var_dump($z ** $x); // $z elevado a la $x 4 elevado a 2 es 4x4 = 16
+
+// tener en cuenta que aveces el resultado puede ser casteado automaticamente por php en float o int
+
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 16.1) Assignment Operators (= += -= *= /= %= **=)
+$x = 5;
+
+// Esto es igual a :
+$x = $x * 3;
+$x *= 3;
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 16.2) String Operators (. .=)
+$x = "hello";
+
+$x = $x . "World";
+// simplificado
+$x .= "World";
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 16.3) Comparison Operators (== === != <> !=== < > <= >= <=> ?? ?:)
+// == comprueba que el resultado sea igual
+// <> es lo mismo que !==
+// === comprueba que el resualtado sea igual y el tipo de dato de la variable tambien
+
+// Ejemplo ternaria ?:
+
+$x = 'Hello World';
+$existe = strpos($x, 'H');
+
+$resultado = $existe === false ? 'No existe la Letra H' : 'Si existe la Letra H';
+
+// Ejemplo ?? se usa normalmente para los nulos
+
+$x = null;
+$y = $x ?? 'Hello'; // si no existe la x 'hello'
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 16.4) Error control operator (@)
