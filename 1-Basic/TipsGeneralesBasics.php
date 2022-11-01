@@ -557,12 +557,30 @@ $y = $x ?? 'Hello'; // si no existe la x 'hello'
 # 16.4) Error control operator (@)
 # El operador @ se puede añadir delante de una funciona para que esta en el momento de se utilizada no muestre los ERRORES ni WARNINGS que pueda causar PHP
 # En Caso de PHP 8 o superior los ERRORES FATAL no son ignorados
+
+# No es muy recomendable usar este operador
+
 #Ejemplo
 @opendir('files/jpg');
 $file = @file_get_contents('none/existing/path');
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 16.5) Increment/Decrement Operators (++ --)
+$x = 1;
+
+// Hay que tener en cuenta que si printamos la operacion -- o ++ no veremos el resultado pero si printamos el resultado si
+echo $x++; // output = 1
+echo $x; // output = 2
+
+$x = 1;
+echo ++$x; // podemos hacer el calculo antes, en este caso si se vera el resultado
+$x--; // lo resta
+
+
+# en los String podemos incrementar con ++ de la a-z abecedario
+$x = 'a';
+$x++;
+echo $x;
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 16.6) Logical Operators (&& || ! and or xor)
