@@ -584,12 +584,57 @@ echo $x;
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 16.6) Logical Operators (&& || ! and or xor)
+$x = true;
+$y = false;
+$result = $x && $y; // && = i las 2 se cumplen
+var_dump($result);
+
+$x = true;
+$y = false;
+$result = $x || $y; // || = o una de las 2 se cumple
+var_dump($result);
+
+# ! negacion
+$x = true;
+$y = true;
+$result = (!$x && $y); // ! evalua lo contrario
+var_dump($result);
+
+# xor
+$x = true;
+$y = true;
+var_dump($x xor $y); // mientras 1 sea verdadera bien pero si lo son las 2 false
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 16.7) Bitwise Operators (& | ^ ~ << >>)
 
+# & calcula el resultado binareo
+# | es el binareo al reves
+
+$x = 6;
+$y = 3;
+
+// 6 = 110 binareo
+//      &
+// 3 = 011 binareo
+//    ----
+//     010 = 2
+var_dump($x & $y);
+
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 16.8) Array Operators (+ == === !== <> !===)
+
+$x = ['a', 'b', 'c'];
+$y = ['d', 'e', 'f', 'g'];
+
+$z = $x + $y; // union, se fusionaran los indices solamente, es decir como x y y tiene indices 0 1 y 2 no se fusionaran y sera solo la array x
+var_dump($z);
+
+# == revisa si las keys y los valores son identicos
+# === revisa si tienen keys, valores y tipo de valores identicos
+# !== revisa lo contrario de ==
+# <> es lo mismo que !==
+# !=== revisa lo contrario de ===
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 16.9) Execution Operators (``)
