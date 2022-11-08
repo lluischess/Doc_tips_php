@@ -41,10 +41,11 @@
 # 16.9) Execution Operators (``)
 # 16.10) Type Operators (instanceof)
 # 16.11) Nullsafe Operators PHP8 (?)
-# 17) La Creación de las Bases de datos deben ser con esta nomenclatura
-# 18) Añadir esto en los forms para subir imagenes al servidor
-# 19) Otra Manera de utilizar comillas dobles en php para una query
+# 17) Operators Precedence & Associativity
+# 18) La Creación de las Bases de datos deben ser con esta nomenclatura
+# 19) Añadir esto en los forms para subir imagenes al servidor
 # 20) Comparaciónes
+# 21) Control Structures (Condicionales) (if / else / elseif / else if)
 
 
 
@@ -370,6 +371,12 @@ Line 3
 TEXT;
 
 echo nl2br($text);
+# Otro Ejemplo
+$query = <<<SQL
+    SELECT *
+    FROM `table`
+    WHERE `column` = true;
+    SQL;
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 5.9) Null
 
@@ -646,7 +653,14 @@ var_dump($z);
 # 16.11) Nullsafe Operators PHP8 (?)
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 17) La Creación de las Bases de datos deben ser con esta nomenclatura
+# 17) Operators Precedence & Associativity (Preferencia)
+
+#Ejemplo en que la Multiplicación tiene preferencia ante la suma
+$x = $a + $b * $c;
+# tabla de preferencia: https://www.php.net/manual/es/language.operators.precedence.php
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 18) La Creación de las Bases de datos deben ser con esta nomenclatura
 
 # 1 Siempre en Ingles
 
@@ -664,18 +678,10 @@ var_dump($z);
 # id_category_product
 # id_store_product
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 18) Añadir esto en los forms para subir imagenes al servidor
+# 19) Añadir esto en los forms para subir imagenes al servidor
 
 # enctype="multipart/form-data">
 # <form method="POST" action="{{ route('user.update') }}" enctype="multipart/form-data">
-#----------------------------------------------------------------------------------------------------------------------------------------------
-# 19) Otra Manera de utilizar comillas dobles en php para una query
-$query = <<<SQL
-    SELECT *
-    FROM `table`
-    WHERE `column` = true;
-    SQL;
-
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 20) Comparaciónes
 
@@ -684,13 +690,32 @@ $query = <<<SQL
 
 '1' === 1; // false porque compara el tipo de dato con los tres iguales
 
-
-
-
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 21)
+# 21) Control Structures (Condicionales) (if / else / elseif / else if)
 
+# funciona tambien sin corchetes pero no es para nada recomendable
+# En el caso del elseif se puede usar tambien else if separado, pero cuando lo usas en html funciona mejor el elseif junto
+$condition = 1;
+if ($condition == 2){ // true 
+    // do
+    echo "2";
+}elseif($condition == 3){
+    echo "3";
+}else{
+    echo "otro";
+}
 
+# Se puede adaptar a html de la siguiente forma para dejarlo mas limpio
+
+if($condition == 2): ?>
+    <strong>2</strong>
+<?php elseif ($condition == 3): ?>
+    <strong>3</strong>
+<?php else: ?>
+    <strong>otro</strong>
+<?php endif ?>
+
+<?php
 #----------------------------------------------------------------------------------------------------------------------------------------------
 
 ?>
