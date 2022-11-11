@@ -46,6 +46,7 @@
 # 19) Añadir esto en los forms para subir imagenes al servidor
 # 20) Comparaciónes
 # 21) Control Structures (Condicionales) (if / else / elseif / else if)
+# 22) declare(strict_types=1)
 
 
 
@@ -717,5 +718,15 @@ if($condition == 2): ?>
 
 <?php
 #----------------------------------------------------------------------------------------------------------------------------------------------
+# 22) declare(strict_types=1)
+
+# tendria que estar definido al principio del codigo
+//declare(strict_types=1); // esto sirve para hacer que los tipos de datos sean totalmente estrictos y dara error en este ejemplo
+// este declare solo aplicara al archivo en si, si en otro archivo no esta declarado no le afectara
+function sum(int $x, int $y){
+    return $x + $y;
+}
+
+echo sum('4',10);
 
 ?>
