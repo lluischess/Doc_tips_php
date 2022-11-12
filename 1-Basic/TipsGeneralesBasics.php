@@ -467,9 +467,25 @@ echo strtolower($frase);
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 9) Include y require
 
+# Siempre es recomendable dividir bastante el codigo en varios archivos ordenadamente y logicamente
+
 include '<EjerciciosBasicos>/Ejercicio1.php'; // lo incluye siempre y las veces que quieras
 include_once '<EjerciciosBasicos>/Ejercicio1.php'; // solo puede incluirse una vez
+
+# La gran diferencia entre include y require es que si el require no encuentra el archivo el codigo dara fatal error
 require '<EjerciciosBasicos>/Ejercicio1.php'; // es necesario para continuar
+require_once '1-Basic/php.ini.php'; // Solo se requiere 1 sola vez
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 9.1) ob_start() and ob_get_clean()
+
+# Se usan para almacenar en el bufer la salida de codigo
+
+ob_start();
+include 'php.ini.php';
+$ini = ob_get_clean();
+
+echo $ini; // imprimimos el codigo del archivo en el momento que imprimimos con echo en el momento desado
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 10) Redireccionar Pagina web
