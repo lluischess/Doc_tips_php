@@ -24,6 +24,7 @@
 # 7) Funciones Matematicas
 # 8) Mas funciones Predefinidas
 # 9) Include y require
+# 9.1) ob_start() and ob_get_clean()
 # 10) Redireccionar Pagina web
 # 11) Cifrar contraseña
 # 12) Guardar string sin espacios
