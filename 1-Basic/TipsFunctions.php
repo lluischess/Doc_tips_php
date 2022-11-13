@@ -6,7 +6,9 @@
 # 3) Funciones guardadas en variables
 # 4) type jggling en function
 # 5) Información de parametros y retornos
-
+# 6) Se puede llamar una funcion dentro de otra
+# 7) si tenemos : void en una funcion puede ser que retorne null
+# 8) Podemos indicar que puede devolver la funcion
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
@@ -106,3 +108,46 @@ function createOffer(Offer $offer, $sendMail)
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
+# 6) Se puede llamar una funcion dentro de otra
+# Pero no es para nada recomendable esto
+
+# Podemos llamar a foo y luego a bar pero ordenadamente primero foo y luego la que esta dentro 
+# porque si llamamos directamente a bar no funcionara
+foo();
+bar();
+function foo(){
+  echo 'foo';
+  function bar(){
+    echo 'bar';
+  }
+}
+
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 7) si tenemos : void en una funcion puede ser que retorne null
+# ya que acepta que retorne un null
+function foo2(): void{
+  echo 'foo';
+}
+
+// pero no funcionara si en el return le asignamos un null FATAL ERROR
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 8) Podemos indicar que puede devolver la funcion
+
+function foo3(): ?int // podemos añadir int string etc 
+{// pero tambien poner el ? que quiere decir que aceptaria un null como respuesta
+
+  return null;
+}
+
+# tambien podemos indicar multiples salidas de la funcion ejemplo
+//function foo4(): string|int{ // PHP 8
+
+//  return 'foo';
+//}
+
+# o mas facil poner el mixed que acepta multiples tipos de datos
+function foo5(): mixed // PHP 7.4 y 8
+{
+  return 'foo';
+}
