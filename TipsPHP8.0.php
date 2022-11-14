@@ -9,6 +9,7 @@
 # 6) classes y propiedades
 # 7) Excepciones mejoradas
 # 8) Comparaciones mejoradas
+# 9) Named argumets on parameters
 
 
 
@@ -140,4 +141,14 @@ $error = fn (string $class) => throw new $class();
 'foo' == 1; // false PHP 8 superior asi que mejora el comportamiento de las comparaciones
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
+# 9) Named argumets on parameters
 
+function test(int $x, int $y = 10): int{
+    return $x*$y;
+}
+# Normalmente ponemos el valor que pertoca al argumente ordenadamente el 6 es la x y el 2 la y pero si los cambiamos seran al reves 6 = y
+# Pues en php 8 podemos decir para que parametro va redirigido
+# pero hay que nombrarlos todos al usarlo
+echo test(y: 6, x: 2);
+
+#----------------------------------------------------------------------------------------------------------------------------------------------

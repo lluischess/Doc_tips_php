@@ -6,6 +6,7 @@
 # 3) Funciones guardadas en variables
 # 4) type jggling en function
 # 5) Información de parametros y retornos
+# 5.1) Parametros de funcion explicados
 # 6) Se puede llamar una funcion dentro de otra
 # 7) si tenemos : void en una funcion puede ser que retorne null
 # 8) Podemos indicar que puede devolver la funcion
@@ -100,10 +101,49 @@ function createOffer(Offer $offer, $sendMail)
 # Esto podria transformarse en lo recomendado como es lo siguiente:
 # Es recomendado a partir de PHP 8
 
-  // function createOffer(Offer $offer, bool $sendMail): Offer // = RETURN de la funcion
+  // function createOffer(Offer $offer, bool $sendMail): Offer // = RETURN de la class
   // {
 
   // }
+
+
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 5.1) Parametros de funcion explicados
+
+# Si no especificamos el tipo de dato de los parametros sera pordefecto mixed: acepta todo tipo de datos
+# es recomendable intentar definir los tipos de datos de los parametros para controlar mas el return
+# (int $x, int $y)
+
+# Podemos asignar un valor pordefeto a un parametro en caso de no darle valor al llamarlo
+# el parametro opcional debe estar siempre al final de todo
+# (int $x, int $y = 10)
+
+function test(int $x, int $y = 10): int{
+    return $x*$y;
+}
+
+echo test(6,2);
+
+# Podemos crear un parametro con multiples numeros dentro de un array que se van guardado todos los parametros dentro de ese array
+# en caso de añadir otros parametros deberian ir antes de este (int $x, int y, int ...$nums)
+#ejemplo
+function test2(...$nums): int{
+  $sum = 0;
+
+  foreach($nums as $num){
+    $sum += $num;
+  }
+  return $sum;
+  # Podriamos omitir toda la iteración que suma por array_sum($nums)
+}
+echo test2(6,2,2,2,2,2);
+
+# tambien es posible pasar un array con los 3 puntos pero en el puesto del parametro
+# Ejemplo:
+$array = [1,2,3,4,5,6,7,8];
+echo test2(...$array);
+
 
 
 
