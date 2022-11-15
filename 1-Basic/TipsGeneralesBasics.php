@@ -20,6 +20,7 @@
 # 5.7) Strings
 # 5.8) Strings Heredoc and Nowdoc
 # 5.9) Null
+# 5.10) Variables Scopes
 # 6) Fechas
 # 7) Funciones Matematicas
 # 8) Mas funciones Predefinidas
@@ -175,6 +176,8 @@ echo $frase;
 
 function hola(){ 
   # Para usar la variable de fuera se usa global
+  # Se pueden ver un listado de Variables locales en un array asociativo aqui:
+  echo $GLOBALS['frase'];
   global $frase; 
     return $frase;
  }
@@ -399,6 +402,32 @@ var_dump($x === null); // output = null errir de no definida
 $x = null;
 var_dump((int) $x); // output 0
 
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 5.10) Variables Scopes(Alcance de las variables)
+
+# Si una variable esta dentro de una funcion solo tendra alcance dentro de la funcion
+function fi(){
+    $variable_solo_para_la_funcion = 10;
+}
+
+# Si una variable esta fuera de la funcion solo tendre accesso en ese archivo de la funcion o si inclumos el archivo en otro archivo
+$variable_para_el_archivo = 10;
+
+# Tenemos luego las variables GLOBALES
+$GLOBALS[$variable_para_el_archivo];
+
+#Static variables
+static $variable2 = null;
+
+class Foo {
+    static $my_var = 'Foo';
+}
+
+$x = new Foo();
+
+echo $x::$my_var;  // works fine
+echo $x->my_var;   // doesn't work - Notice: Undefined property: Foo::$my_var
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 6) Fechas
