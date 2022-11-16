@@ -10,6 +10,11 @@
 # 6) Se puede llamar una funcion dentro de otra
 # 7) si tenemos : void en una funcion puede ser que retorne null
 # 8) Podemos indicar que puede devolver la funcion
+# 9) is_callable
+# 10) Anonymus functions
+# 11) (array_map) y callable data type and callback functions
+# 12) Arrow Functions en php 7.4 para arriba
+
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
@@ -187,7 +192,118 @@ function foo3(): ?int // podemos añadir int string etc
 //}
 
 # o mas facil poner el mixed que acepta multiples tipos de datos
-function foo5(): mixed // PHP 7.4 y 8
+function foo5($num): mixed // Solo en php 8
 {
-  return 'foo';
+  return $num;
 }
+
+# Lista de declaraciónes:
+
+// Nombre de la Clase/Interfaz |	El valor debe ser una instancia de la clase o de la interfaz.	 
+// self |	El valor debe ser una instanceof de la misma clase que aquella en la que se utiliza la declaración de tipo. Solamente se puede usar en clases.	 
+// parent |	El valor debe ser una instanceof del padre de la clase en la que se usa la declaración de tipo. Solo se puede usar en clases.	 
+// array |	El valor debe ser un array.	 
+// callable |	El valor debe ser un callable válido. No puede ser usado como una declaración de tipo de propiedad de clase.	 
+// bool |	El valor debe ser un valor booleano.	 
+// float |	El valor debe ser un número de coma flotante.	 
+// int |	El valor debe ser un número entero.	 
+// string |	El valor debe ser un string.	 
+// iterable |	El valor debe ser un array o una instanceof de la clase Traversable.	PHP 7.1.0
+// object |	El valor debe ser un objeto.	PHP 7.2.0
+// mixed	| El valor puede ser cualquier valor.	PHP 8.0.0
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 9) is_callable
+
+# si tienes una variable con el nombre de una funcion y la utilizas para hacer una llamada php la detecta como funcion.
+#podemos usar la function is_calleble para averiguar si esa funcion existe
+
+$funcion_name = 'foo5';
+
+if (is_callable($funcion_name)){
+  echo $funcion_name(3);
+}else{
+  echo 'Not callable';
+}
+# funciona muy bien para verificar siempre si esa función esta al alcance de ser llamada o no existe
+var_dump(is_callable(foo5(3)));
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 10) Anonymus functions
+
+# Son funciones sin nombre que para que funcionen correctamente tienen que terminar con ; 
+# ejemplo: f{};
+# Para poder llamar a esta funcion tenemos que asignar la funcion a una variable
+# Las funciones anonimas tienen una funcionalidad unica que permite a la funcion poder acceder a variables externas usando use
+#ejemplo:
+$x = 1;
+$num = function ($num ) use($x) // Solo en php 7.4 y 8 para arriba
+{
+  echo $x . "\n"; // ya no da error e incluso se puede usar el valor de la x externo a la funcion
+  return $num;
+};
+
+echo $num(5);
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 11) (array_map) y callable data type and callback functions
+
+# a Callable data type es un tipo de dato que es una function callable que estas pasando una funcion que se puede llamar
+# Existen varias maneras de pasar una callback function como argumento
+# existe array_map que es una funcion que se encarga de usar una callable que es una function ejecutable la cual puede recorrer el array que le pasamos
+$array = [1,2,3,4];
+
+$array_result = array_map(function($element){
+  echo $element;
+  return $element * 2; # element es cada valor que esta dentro del $array
+}, $array);
+
+print_r($array_result);
+
+#El ejemplo de arriba tambien se puede externalizar de la siguiente manera:
+
+$x = function($element){
+  return $element *2;
+};
+
+$array_result = array_map($x,$array);
+print_r($array_result);
+
+#Ultimo ejemplo es usar una funcion nombrada
+
+function multi($element){
+  return $element *2;
+};
+
+$array_result = array_map('multi',$array);
+print_r($array_result);
+
+# Ejemplo usando callable data type en una funccion de parametro
+
+function multi2($element){
+  return $element *2;
+};
+
+$sum = function (callable $callback, int ...$numeros): int{
+  return $callback(array_sum($numeros));
+};
+
+echo $sum('multi2',1,2,3,4); // 2 + 4 + 6 + 8 = 20
+
+# La diferencia entre Callable function y Closure function es que las funciones clousure solo pueden ser anonimas
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 12) Arrow Functions en php 7.4 para arriba
+
+# Es una versión limpia de una funcion anonimo
+#Ejemplo la funcion arrow es fn
+$array = [1,2,3,4];
+
+$array_result = array_map(fn($element) => $element * 2, $array);
+
+print_r($array_result);
+
+
+
+
+
+
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
