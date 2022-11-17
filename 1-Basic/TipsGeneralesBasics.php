@@ -440,7 +440,32 @@ echo date('H:i:s'). "<br>";
 
 # Time en integer
 echo time();
- 
+
+# Podemos modificar la fecha via el segundo parametro de date
+echo date('d/m/y H:i:a', time() + 5 * 24 * 60 * 60); // en este ejemplo añadimos 5 dias 24 horas 60 minutos y 60 s a la fecha actual
+
+# Para poder trabajar con las horas de zona time zones se usa la siguiente funcion
+# Primero podemos ver en que timezone estamos:
+echo date_default_timezone_get();
+# luego seteamos la que queremos usar
+date_default_timezone_set('UTC');
+echo date('d/m/y H:i:a', time() + 5 * 24 * 60 * 60); // ahora nos lo enseña en otra zona de tiempo
+
+# Podemos obtener una fecha en hexadecimal por parametros que nos convenga y luego formatearla a fecha 
+# Ejemplo :
+echo mktime(8,0,0,11,10,2022); 
+$fecha = mktime(8,0,0,11,10,2022); 
+echo "\n$fecha";
+// ahora formateamos la fecha a lo que nos convenga
+echo date('d-m-y H:i:s a', $fecha);
+
+#tambien podemos usar strtotime
+echo strtotime('2022-01-18 07:00:00');// de un estring to hexa
+// podemos formatearlo
+echo date('d/m/y H:i:a',strtotime('2022-01-18 07:00:00'));
+$data = date('d/m/y H:i:a',strtotime('2022-01-18 07:00:00'));
+#Para obtener mas valores de una fecha podemos usar date_parse para transformar la fecha en un array con mas parametros
+print_r(date_parse($data));
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 7) Funciones Matematicas
