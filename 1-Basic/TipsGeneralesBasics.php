@@ -430,7 +430,7 @@ echo $x::$my_var;  // works fine
 echo $x->my_var;   // doesn't work - Notice: Undefined property: Foo::$my_var
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 6) Fechas
+# 6) Fechas Dates
 
 # Formato de fecha:
 echo date('d-m-y') . "<br>";
