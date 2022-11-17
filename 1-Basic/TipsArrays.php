@@ -9,7 +9,14 @@
 # 3) Funciones para Arrays
 # 4) Iterar arrays sencillas
 # 5) Iterar arrays asociativos
-
+# 6) Separar array en diferentes arrays dentro de la misma array
+# 7) Array_combine()
+# 8) array_filter()
+# 9) Reindexar array_values
+# 10) Podemos ver los Keys de un array con array_keys()
+# 11) Array_map ejecuta una funcion a los valores de un array o dos
+# 12) array_merge() es para unificar arrays
+# 13) Array_reduce para obtener un unico valor con callable
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
@@ -285,3 +292,103 @@ foreach ($array as $key => $value){
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
+# 6) Separar array en diferentes arrays dentro de la misma array
+# Con array_chunk
+
+$items = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5];
+
+# primer argumento es la array
+# segundo argumento los items que deseas por array
+# si quieres mantener las keys de indices
+$items_separados = array_chunk($items, 2, true);
+
+print_r($items_separados);
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 7) Array_combine()
+
+# lo que hace es que le pasamos 2 arrays el primer array son los indices del array combinado
+# y el segundo array los valores, tienen que coincidir en el numero de incides y valores si no petara
+
+$array1 =['a', 'b', 'c'];
+$array2 = [1,2,3];
+
+print_r(array_combine($array1,$array2));
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 8) array_filter()
+
+# por ejemplo podemos filtrar los divisibles entre 2
+# devuelve true or false y los resultados
+
+# Primero le pasamos la array donde buscaremos
+# el segundo es una funcion callable
+# En este ejemplo esta filtrando el $elemento como el valor de cada elemento
+$array = ['a' => 1,'b' => 2,'c' => 3, 'd' => 4];
+$result = array_filter($array, fn($elemento)=> $elemento % 2 == 0);
+print_r($result);
+
+# Pero tambien podemos filtrar por KEY usando lo sigueinte:
+$array = [1,2,3,4,5,6,7,8,9];
+$result = array_filter($array, fn($elemento)=> $elemento % 2 == 0,ARRAY_FILTER_USE_KEY);
+print_r($result);
+
+# O los dos Valor y KEY
+$array = [1,2,3,4,5,6,7,8,9];
+$result = array_filter($array, fn($elemento, $key)=> $elemento % 2 == 0,ARRAY_FILTER_USE_BOTH);
+print_r($result);
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 9) Reindexar array_values
+
+#Reindexamos el ejemplo anterior
+#vualve a contar desde 0 los indices KEY
+print_r(array_values($result));
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 10) Podemos ver los Keys de un array con array_keys()
+
+# lo que hace es devolverte una array con todos los keys como valores del array que querias
+$array = ['a' => 1,'b' => 2,'c' => 3, 'd' => 4];
+print_r(array_keys($array)); // tiene un segundo parametro para filtrar por el valor
+# Tener en cuenta que en el segundo parametro si buscamos por valores de mas de 2 numeros no funciona
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 11) Array_map ejecuta una funcion a los valores de un array o dos
+
+$array1 = ['a' => 1,'b' => 2,'c' => 3, 'd' => 4];
+$array2 = ['a' => 1,'b' => 2,'c' => 3, 'd' => 4];
+
+$array_result = array_map(fn($num1, $num2)=> $num1 + $num2,$array1,$array2);
+# Nota important
+# si solo pasamos 1 array y es asociativo las Keys se mantendran
+# pero si pasamos 2 arrays se perderan y se reindexara
+print_r($array_result);
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 12) array_merge() es para unificar arrays
+$array1 = [1,2,3];
+$array2 = [1,2,3];
+$array3 = [1,2,3];
+
+print_r(array_merge($array1,$array2,$array3));
+
+# En caso de ser asociativos cuidado que no se repitan las KEYS ya que se quedaran con el ultimo valor de la ultima KEY
+
+$array1 = ['a' => 1,'b' => 2,'c' => 3, 'd' => 4];
+$array2 = ['a' => 1,'r' => 2,'c' => 3, 'd' => 4];
+print_r(array_merge($array1,$array2));
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 13) Array_reduce para obtener un unico valor con callable
+function suma($carry, $item)
+{
+    $carry += $item;
+    return $carry;
+}
+
+$a = array(1, 2, 3, 4, 5);
+var_dump(array_reduce($a, "suma")); // int(15)
+// sumaria todos los valores
+
+
+
+
