@@ -17,7 +17,10 @@
 # 11) Array_map ejecuta una funcion a los valores de un array o dos
 # 12) array_merge() es para unificar arrays
 # 13) Array_reduce para obtener un unico valor con callable
-
+# 14) Array_search() and in_array()
+# 15) Array_diff encontrar la diferencia entre arrays
+# 16) Ordenar arrays asort() and ksort()
+# 17) array distruction 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 1) Arrays
@@ -388,7 +391,73 @@ function suma($carry, $item)
 $a = array(1, 2, 3, 4, 5);
 var_dump(array_reduce($a, "suma")); // int(15)
 // sumaria todos los valores
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 14) Array_search() and in_array()
+
+# Sirve para obtener la KEY del valor que le pasas
+$array = ['a','b','c','d','e','f','g','ha'];
+
+$key = array_search('b',$array);
+
+echo $key; // el indice del valor de b
+
+# Para verificar que la hemos encontrado siempre triple comparación ===
+if($key === false){
+  echo "letra no encontrada";
+}
+
+# o hacerlo con in_array()
+
+if (!in_array('l',$array)){
+  echo "\nletra no encontrada 2";
+}
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 15) Array_diff encontrar la diferencia entre arrays
+$array1 = ['a' => 1,'b' => 2,'o' => 3, 'd' => 4];
+$array2 = ['a' => 1,'b' => 8,'o' => 3, 'm' => 4];
+$array3 = ['a' => 1,'b' => 7,'o' => 3, 'n' => 6];
+
+# busca si en la primera array hay valores distintos en otras arrays
+print_r(array_diff($array1,$array2,$array3)); // el 
+//[b] => 2
+
+# Si queremos mirar con un array asociativo seria lo siguiente:
+print_r(array_diff_assoc($array1,$array2,$array3));
+// estas serian los indices que no estan en otras arrays
+// [b] => 2
+// [d] => 4
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 16) Ordenar arrays asort() and ksort()
+$array1 = ['a' => 1,'b' => 8,'o' => 3, 'm' => 4];
+# Ordena los valores de menor a mayor
+print_r($array1);
+
+asort($array1);
+
+print_r($array1);
+
+# tambien podemos ordenar por key
+
+ksort($array1);
+
+print_r($array1);
 
 
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 17) array distruction 
 
+# El siguiente ejemplo es una manera de destruir un array asignando valores a variables
 
+$array = [1,2,3,4];
+
+[$a,$b,$c,$d] = $array;
+
+echo $a . ' ' . $b . ' ' . $c . ' '. $d;
+
+# Tambien podemos hacerlo asignando keys
+$array = [1,2,3,4];
+
+[1 => $a, 0 => $b,2 => $c,3 => $d] = $array;
+
+echo $a . ' ' . $b . ' ' . $c . ' '. $d;
