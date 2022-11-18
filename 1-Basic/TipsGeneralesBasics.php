@@ -802,4 +802,37 @@ function sum(int $x, int $y){
 
 echo sum('4',10);
 
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 23) Handling errors manejo de errores
+
+error_reporting(0); // no mostrara ningun error
+error_reporting(E_ALL); // Mostrara todos los errores
+
+# Lista de control de errores:
+# https://www.php.net/manual/en/errorfunc.constants.php
+# https://www.php.net/manual/en/function.set-error-handler.php
+
+# Para generar mensajes de errores tenemos esta funcion:
+# Con esta funcion manual solo podemos llamar a estos handling errors: E_USER_ERROR E_USER_WARNING  E_USER_NOTICE E_USER_DEPRECATED 
+trigger_error('error de ejemplo', E_USER_WARNING);
+echo 1;
+
+# Para crear un control de errores necesitamos una function Ejemplo:
+
+function ErrorHandler(int $type, string $msn, ?string $file = null, ?int $line =null){
+    echo $type. ': ' .$msn.' in '. $file. ' on line '. $line;
+    exit;
+}
+echo $k;
+# despues de crear la funcion la tenemos que settear como paso de control del erro_hendler
+# es importante saber que esto remplazara el error_reporting actual por defecto que exista en ese momento
+set_error_handler('ErrorHandler', E_ALL);
+
+# en caso de volver a recuperar el handler tenemos esta function
+//restore_error_handler();
+
+echo $k;
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+
 ?>
