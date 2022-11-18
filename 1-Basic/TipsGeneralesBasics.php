@@ -49,6 +49,8 @@
 # 20) Comparaciónes
 # 21) Control Structures (Condicionales) (if / else / elseif / else if)
 # 22) declare(strict_types=1)
+# 23) Handling errors manejo de errores
+
 
 
 
