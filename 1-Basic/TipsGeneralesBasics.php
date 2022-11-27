@@ -50,7 +50,7 @@
 # 21) Control Structures (Condicionales) (if / else / elseif / else if)
 # 22) declare(strict_types=1)
 # 23) Handling errors manejo de errores
-
+# 24) Trabajar con directorios
 
 
 
@@ -834,5 +834,26 @@ set_error_handler('ErrorHandler', E_ALL);
 echo $k;
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
+# 24) Trabajar con directorios y ficheros
+# Existe un sitema de directorios y como tener controlado todo esto en php
 
+# scandir()
+# Escanea el directorio donde estamos y almacena los ficheros nombres de ficheros en una array
+$dir = scandir(__DIR__);
+
+# Podemos revisar que es un fichero o un directorio
+var_dump($dir);
+var_dump(is_file($dir[4]));
+var_dump(is_dir($dir[1]));
+
+#Crear directorios con mkdir o eliminar con rmdir
+mkdir('carpeta_nueva/dentro_nueva_carpeta',0777, recursive: true); // segundo parametro permisos y el tercero por si creamos directorios dentro de directorios
+rmdir('carpeta_nueva/dentro_nueva_carpeta'); 
+
+# Mirar si existe el fichero y da el tamaño del fichero
+if(file_exists('foo.txt')){
+    echo filesize('foo.txt');
+}else{
+    echo 'el archivo no existe';
+}
 ?>
