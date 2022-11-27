@@ -856,4 +856,6 @@ if(file_exists('foo.txt')){
 }else{
     echo 'el archivo no existe';
 }
+
+
 ?>
