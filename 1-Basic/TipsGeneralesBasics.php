@@ -51,6 +51,7 @@
 # 22) declare(strict_types=1)
 # 23) Handling errors manejo de errores
 # 24) Trabajar con directorios
+# 25) Limpiar cache de estado clearstatcache()
 
 
 
@@ -847,15 +848,59 @@ var_dump(is_file($dir[4]));
 var_dump(is_dir($dir[1]));
 
 #Crear directorios con mkdir o eliminar con rmdir
-mkdir('carpeta_nueva/dentro_nueva_carpeta',0777, recursive: true); // segundo parametro permisos y el tercero por si creamos directorios dentro de directorios
+mkdir('carpeta_nueva/dentro_nueva_carpeta',0777, true); // segundo parametro permisos y el tercero por si creamos directorios dentro de directorios
 rmdir('carpeta_nueva/dentro_nueva_carpeta'); 
 
 # Mirar si existe el fichero y da el tamaño del fichero
 if(file_exists('foo.txt')){
     echo filesize('foo.txt');
+
+    # En caso de existir vamos a meterle contenido al archivo
+    file_put_contents('foo.txt','hello world'); // sobrescrive el archivo
+    file_put_contents('foo.txt','hello world', FILE_APPEND); // podemos incluir un tercer parametro en este caso para añadir nueva información en vez de sobrescrivirla
+
+    # Ahora vamos a trabajar con el archivo y vamos abrirlo
+    # En caso de no encontrar el archivo fopen devuelve un false 
+    # en caso de devolver el archivo devuelve un recurso que es un tipo de dato
+    # Para que no de error se le añade el @ pero es recomendable usar el file_existes
+    $file = @fopen('foo.txt', 'r'); // podemos abrir archivo con segundo parametro que son los permisos para leer escribir o para los 2
+
+    # Assignamos a $line la linea del archivo  hasta que sea false
+    while(($line = fgets($file)) !== false){ // fgets devuelve string o false
+        echo $line . "\n";// imprimimos la linea
+    }
+    # tambien existe un get linea de csv fgetcsv()
+
+    # Podemos obtener el contendio de esta manera tambien:
+    $content = file_get_contents('foo.txt');
+    echo $content;
+
+    # finalmente siempre cerrar el archivo en el que se este trabajando
+    fclose($file);
+
+
+
 }else{
     echo 'el archivo no existe';
 }
 
+#Para eliminar ficheros podemos usar lo siguiente:
+unlink('foo.txt');
+
+# Podemos copiar el contenido de un fichero a otro fichero:
+# Si no existe el segundo archivo lo creara con el contenido de foo
+# Si existe con otro contenido lo sobrescribira con el de foo
+copy('foo.txt','bar.txt');
+
+#Para renombrar archivos podemos usar lo siguente con carpetas tambien funciona
+rename('foo.txt','foo2.txt');
+
+# Obtener información del archivo
+var_dump(pathinfo('foo.txt'));
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 25) Limpiar cache de estado clearstatcache()
+# Limpia la caché de estado de un archivo va bien al trabajar con archivos
+clearstatcache();
 
 ?>
