@@ -4,7 +4,7 @@
 # 1) Apache configure file
 # 2) Virtual host
 # 3) htaccess files
-# 4) 
+# 4) Nginx
 
 
 
