@@ -1,15 +1,16 @@
 <?php
 
 # INDEX 
-# 1) Apache configure file
+# 1) Server Apache configure file
 # 2) Virtual host
 # 3) htaccess files
 # 4) Nginx
+# 5) Apache vs Nginx
 
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 1) Apache configure file
+# 1) Server Apache configure file
 
 # Normalmente la configuración de apache esta en esta ruta:
 //usr/local/apache2/conf/httpd.conf
@@ -82,3 +83,10 @@
 # todos esto tambien se puede aplicar directamente en el hostvirtual
 # asi que no es siempre del todo necesario el htaccess
 
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 4) Server Nginx
+
+
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 5) Apache vs Nginx
