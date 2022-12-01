@@ -90,3 +90,7 @@
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 5) Apache vs Nginx
+
+# En Apache el php funciona como un modulo mas de apache por ello tiene el archivo mod_php en esta diferencia puede ser un poco mas lentas las llamadas al php module, que se podria solventar con un CDN
+# En cambio en Nginx tenemos PHP_FPM este en cambio stands para php mas rapido cgi, como no procesa imagenes ni staticos es mucho mas rapido, el modelo FPM es posible tambien meterlo en apache pero en Nginx biene por defecto
+
