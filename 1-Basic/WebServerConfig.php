@@ -86,6 +86,27 @@
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 4) Server Nginx
 
+# este es un archivo de configuración nginx.conf
+
+// server {
+//     Listen 80;
+//     index index.php;
+//     error_log /var/log/nginx/error.Log;
+//     access_log /var/log/nginx/access.Log;
+//     error_page 404 /index.php;
+//     root /var/www/public;
+//     Location \.php$ {
+//         try_files $uri =404;
+//         fastcgi_pass app:9000;
+//         fastcgi_index index.php;
+//         include fastcgi_params;
+//         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+//     }
+//     Location / {
+//         try_files $uri $uri/ /index.php?$query_string; 
+//         gzip_static on;
+//     }
+// }
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
