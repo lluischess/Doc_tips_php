@@ -6,6 +6,10 @@
 # 2.1) Mas ejemplos de visivilidad
 # 3) Añadir tipos a las variables de clases
 # 4) Tratar variables de clases antes de nada
+# 5) Clases & objects
+# 5.1) Metodo chaining llamar a todas las funciones instanciando de golpe
+# 5.2) Destruir instancia
+# 5.3) Casting para objetos
 
 
 
@@ -169,9 +173,98 @@ $money = new Money(); // en 3)
 var_dump($money->amount);
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
+# 5) Clases & objects
+
+# Una clase es una definición de algun cosa, una clase puede instanciarse como un objeto multiples veces.
+# Un objeto es la instancia de una clase la cual por su definición de clase se genera un objeto individual.
+# Ejemplo de clase
+
+class Transaction
+{
+    // Propiedades de una clase
+    # todas las propiedades sin valor asignado estaran como NULL
+    # En caso de una propiedad private solo se podria acceder dentro de la clase
+
+    #Nota Importante: Si la propiedad tiene asignada un tipo de dato y no tiene valor asignado devolvera un error y no un null,
+    # la mejor manera de resolver eso es que siempre devuelva un valor, ya que al añadir tipo es una variable uninicializada si no tiene valor
+    # para resolver esto se puede añadir un valor directamente en la propiedad o en el constructor o en el setter
+    private float $amount;
+    public string $description;
+
+    # El constructor es un metodo especial el cual es llamado siempre que se instancie una clase
+    # El constructor puede alvergar argumentos e iniciarlos
+    # Es super recomendable añadir los accesos de permisos a los metodos ya que sino php siempre los dejara por defecto en public
+    # El constructor siempre suele ser public
+    public function __construct(float $amount, string $description)
+    {
+        # Para acceder a las propiedades de la misma clase utilizamos el $this
+        $this->amount = $amount; // Aqui le estamos diciendo que este amount de la class es igual al valor del argumento del constructor que sera asignado al instanciar la clases
+        $this->description = $description;
+    }
+
+    // Este metodo magico se ejecuta cuando no hay mas referencias a la clase o cuando se destruye la instancia
+    public function __destruct()
+    {
+        echo 'Destruir ' . $this->description . "\n";
+    }
+
+    public function addtax(float $rate): Transaction
+    {
+        $this->amount += $this->amount * $rate/100;
+        var_dump($this->amount);
+        return $this; // devolvemos el objeto
+    }
+
+    public function adddiscount(float $discount): Transaction // devuelve un objeto
+    {
+        $this->amount -= $this->amount * $discount/100;
+        var_dump($this->amount);
+        return $this;
+    }
+
+    // Para poder acceder desde fuera a una propiedad private se suelen usar los Getters
+    public function getAmount(): float
+    {
+        return $this->amount;
+    }
+
+
+}
+
+# Ejemplo de Objeto instanciado
+$transaccion = new Transaction(100,"gol");
+var_dump($transaccion);
+// objeto: Transaction
+
+
+# Acceder a una propiedad del objeto
+//echo $transaccion->amount; // error al ser propiedad privada en caso de public podriamos
+$transaccion->addtax(8);
+$transaccion->adddiscount(5);
+echo $transaccion->getAmount();
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
+# 5.1) Metodo chaining llamar a todas las funciones instanciando de golpe
+# Podemos hacer que las funciones de la clase devuelvan un return y ajustarlo todo en el siguiente ejempolo
+# haciendo que se vayan ejecutando todos los metodos segidamente
+$amount2 = (new Transaction(100,"T2"))
+            ->addtax(8)
+            ->adddiscount(5)
+            ->getAmount();
 
+var_dump($amount2);
 #----------------------------------------------------------------------------------------------------------------------------------------------
+# 5.2) Destruir instancia
+unset($transaccion);
+//var_dump($transaccion); no funcionara
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 5.3) Casting para objetos
 
-#----------------------------------------------------------------------------------------------------------------------------------------------
+# Convertimos de Array a objeto
+
+$arr = [1,2,3];
+
+$obj = (object) $arr; // esto se convertira en objeto stdclass
+
+var_dump($obj->{1}); // entrara en el indice 1 = 2
+
