@@ -10,6 +10,9 @@
 # 5.1) Metodo chaining llamar a todas las funciones instanciando de golpe
 # 5.2) Destruir instancia
 # 5.3) Casting para objetos
+# 5.4) Constructores propiedades promocionadas sintaxis mas limpia php 8
+# 5.5) Nullsafe operator ? llamando a clases php 8
+# 5.6) Namespace
 
 
 
@@ -268,3 +271,88 @@ $obj = (object) $arr; // esto se convertira en objeto stdclass
 
 var_dump($obj->{1}); // entrara en el indice 1 = 2
 
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 5.4) Constructores propiedades promocionadas sintaxis mas limpia php 8
+
+class Transaction2 {
+    # Esto te ahorra poner las propiedades antes y llamarlas con el this para añadirles el valor
+    // public function __construct(private float $amount, private string $description)
+    // {
+    //     // Se puede acceder a las propiedades asi:
+    //     echo $this->amount;
+    //     echo $description;
+        
+    // }
+}
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 5.5) Nullsafe operator ? llamando a clases php 8
+
+# Si tenemos llamadas a una clase para consegir las propiedades podemos añadir un nullsafe operator
+
+class PaymentProfile {
+    # Tenemos un id random
+    public int $id;
+
+    public function __construct()
+    {
+        $this->id = rand();
+    }
+}
+
+class Customer {
+    # tenemos una propiedad de clase PaymentProfile que es un null por defecto
+    public ?PaymentProfile $paymantProfile = null;
+}
+
+class Transactions3 {
+    private float $amount;
+    public ?Customer $customer = null;
+
+    public function __construct(float $amount)
+    {
+        $this->amount = $amount;
+    }
+
+    public function getAmount(): float
+    {
+        return $this->amount;
+    }
+}
+
+#Multi llamada de instancia de objeto
+# Instanciando todas las clases para que funcione la llamada al id seria de la siguiente manera:
+$transaction8 = new Transactions3(3);
+$transaction8->customer = new Customer();
+$transaction8->customer->paymantProfile = new PaymentProfile();
+echo $transaction8->customer->paymantProfile->id;
+
+#PERO si nos faltara una instancia de objeto para que no petara en php 8 podemos llamar al ? que es un nullsafe operator
+# ASI:
+//echo $transaction8->customer?->paymantProfile?->id;
+
+# O:
+echo $transaction8->customer->paymantProfile->id ?? 'foo';
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 5.6) Namespace
+
+
+# Si tuviéramos 2 clases iguales en distintas rutas, causaria error fatal
+# Por ello existen los namespace
+require_once './2-Intermediate/TipsOOP/otrositio/camion.php';
+require_once './2-Intermediate/TipsOOP/tests/camion.php';
+
+# El namespace se declara al principio de todo, para ver el ejemplo ir a la clase camion en tests
+
+# Para poder acceder a la clase con namespace tenemos que hacer lo siguiente:
+var_dump(new tipsOop\tests\Camion(2));
+
+# Otro ejemplo para acceder:
+# podemos usar el use
+
+use tipsOop\tests\Camion;
+
+var_dump(new Camion(2));
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
