@@ -355,4 +355,13 @@ use tipsOop\tests\Camion;
 
 var_dump(new Camion(2));
 
+# En caso de estar usando Camion en la misma clase camion pero es de otra ruta podemos renombrar la classe que usaremos con otro nombre para que no de error
+use tipsOop\tests\Camion as TestCamion;
+
+var_dump(new TestCamion(2));
+
+# Importar varios a la vez
+
+//use tipsOop\tests\{Camion, coche};
+
 #----------------------------------------------------------------------------------------------------------------------------------------------
