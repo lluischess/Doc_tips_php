@@ -30,3 +30,5 @@ spl_autoload_register(function($class){
  $testcoche = new coche(4); // clase instanciada
  
  //var_dump($testcoche);
+
+ # 6) Se puede utilizar el autoloading de Composer explicado en 2-intermediate/composer.php
