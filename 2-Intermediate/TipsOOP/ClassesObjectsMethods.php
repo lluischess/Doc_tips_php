@@ -14,6 +14,8 @@
 # 5.5) Nullsafe operator ? llamando a clases php 8
 # 5.6) Namespace
 # 5.7) Constantes de Clases
+# 5.8) Static Properties & Methods
+# 5.9) Singelton class con constructor privado
 
 
 
@@ -426,3 +428,66 @@ echo "\n";
 # Utilizamos constantes para asi no pasar un atributo equivocado que de bugs
 $payment->setStatus(Status::STATUS_PAID);
 var_dump($payment);
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 5.8) Static Properties & Methods
+
+class PaymentProfile3 {
+
+    # Static puede ir antes o despues del acceso public
+    public static int $count = 0;
+
+    public function __construct()
+    {
+        var_dump(self::$count++);
+    }
+
+    public static function getCount(): int
+    {
+        // dentro de un metodo statico no podemos usar el $this hay que usar el self
+        return self::$count;
+    }
+}
+
+# Podemos acceder a metodos y atributos staticos igual que como accedemos a las constantes de una clase
+echo PaymentProfile3::$count;
+# si son staticos pertenecen a la clase no a la instancia
+# no estan asociadas por el objeto instanciado, sino que pertenecen a la clase
+# si llamamos a una instancia del objeto no empezara desde 0 como otros atributos
+# se ira guardado parecido a una constante
+$pay = new PaymentProfile3();
+$pay2 = new PaymentProfile3();
+$pay3 = new PaymentProfile3(); // 2
+
+# Con los metodos staticos pasa igual
+echo "\n" . PaymentProfile3::getCount();
+
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 5.9) Singelton class con constructor privado
+
+# Es una clase que crea una instancia de la Base de datos de manera seguro
+
+Class DB 
+{
+    public static ?DB $instancia = null;
+
+    private function __construct(public array $config)
+    {
+        echo 'Instancia creada';
+    }
+
+    public static function getInstance(array $config): DB 
+    {
+        if (self::$instancia == null){
+            self::$instancia = new DB($config);
+        }
+
+        return self::$instancia;
+    }
+}
+
+# Aunque creamos 3 instancias solo se imprimira 1 vez el constructor
+# Si el constructor fuera publico se imprimiria 3 veces
+$db = DB::getInstance([]);
+$db = DB::getInstance([]);
+$db = DB::getInstance([]);
