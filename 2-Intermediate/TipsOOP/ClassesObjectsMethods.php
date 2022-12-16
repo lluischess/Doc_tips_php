@@ -13,6 +13,7 @@
 # 5.4) Constructores propiedades promocionadas sintaxis mas limpia php 8
 # 5.5) Nullsafe operator ? llamando a clases php 8
 # 5.6) Namespace
+# 5.7) Constantes de Clases
 
 
 
@@ -365,3 +366,63 @@ var_dump(new TestCamion(2));
 //use tipsOop\tests\{Camion, coche};
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
+# 5.7) Constantes de Clases
+
+class Status
+{
+    # Asi se declaran las constantes de clase, siempre añadir la visibilidad
+    public const STATUS_PAID = 'paid';
+    public const STATUS_PENDING = 'pending';
+    public const STATUS_DECLINED = 'declined';
+
+    # Podemos crear una array constant con todos los Estados
+    public const ALL_STATUSES = [
+        self::STATUS_DECLINED => 'Paid',
+        self::STATUS_PENDING => 'Pending',
+        self::STATUS_DECLINED => 'Declined',
+    ];
+}
+
+class PaymentProfile2 {
+
+    public const STATUS_PAID = 'paid';
+    private const STATUS_PENDING = 'pending';
+
+    public function __construct()
+    {
+        // Aqui le estamos diciendo que sette el estado a pending al instanciar el objeto
+        $this->setStatus(Status::STATUS_PENDING);
+        #Podemos acceder a la constante privada de dos maneras asi:
+        var_dump(PaymentProfile2::STATUS_PENDING);
+        var_dump(self::STATUS_PENDING);
+
+    }
+
+    public function setStatus(string $status): self // que devuelva self inplica que esta devolviendo un objeto ya que hace referencia a su propia clase es como self=PaymentProfile2
+    {
+        // Podriamos revisar si el estado existe:
+        if (!isset(Status::ALL_STATUSES[$status])){
+            throw new \InvalidArgumentException('Invalid status');
+        }
+        // Esta propiedad sera igual al estado seteado
+        $this->status = $status;
+        return $this;
+    }
+}
+
+
+
+// echo PaymentProfile2::class; // Esto imprime la ruta entera de la clase
+
+# para acceder a una constante de clase se hace asi:
+# Solo si son publicas
+// echo PaymentProfile2::STATUS_PAID; // no hace falta instanciar la clase para acceder a ella
+
+# aunque tambien funciona instanciando la clase
+$payment = new PaymentProfile2();
+echo $payment::STATUS_PAID;
+echo "\n";
+
+# Utilizamos constantes para asi no pasar un atributo equivocado que de bugs
+$payment->setStatus(Status::STATUS_PAID);
+var_dump($payment);
