@@ -1,23 +1,32 @@
 <?php
-Class DB 
+class Transaction 
 {
-    public static ?DB $instancia = null;
+    private float $amount;
 
-    private function __construct(public array $config)
+    public function __construct(float $amount)
     {
-        echo 'Instancia creada';
+        $this->amount = $amount;
     }
 
-    public static function getInstance(array $config): DB 
+    public function process()
     {
-        if (self::$instancia == null){
-            self::$instancia = new DB($config);
-        }
+        echo 'Prossecing $' . $this->amount . ' transaction';
+    }
 
-        return self::$instancia;
+    # Si el atributo es privado podremos modificarlo desde fuera usando un set function y obtenerlo con un get function
+    public function getAmount(): float
+    {
+        return $this->amount;
+    }
+
+    public function setAmount(float $amount)
+    {
+        $this->amount = $amount;
     }
 }
 
-$db = DB::getInstance([]);
-$db = DB::getInstance([]);
-$db = DB::getInstance([]);
+
+$transaction = new Transaction(5.5);
+echo $transaction->getAmount();
+$transaction->setAmount(4.1);
+$transaction->process();
