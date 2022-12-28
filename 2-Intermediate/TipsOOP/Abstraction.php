@@ -2,7 +2,7 @@
 
 # INDEX 
 # 1) Que es Abstraction ?
-# 2) 
+# 2) Ejemplo de clase Abstracta
 # 3) 
 # 4) 
 
@@ -12,6 +12,7 @@
 # 1) Que es Abstraction ?
 
 // Las clases abstractas en PHP son clases que no se pueden instanciar y se definen con la palabra reservada abstract, 
+# Solo pueden ser extendidas por otra clase
 // la clase abstracta implementa métodos parcialmente con el objetivo que las clases que lo heredan terminen de implementar la funcionalidad.
 // la abstracción va un poco de la mano de la encapsulación
 // los metodos publicos y atributos publicos rompen la abstracción

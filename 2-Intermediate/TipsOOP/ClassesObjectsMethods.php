@@ -16,7 +16,6 @@
 # 5.7) Constantes de Clases
 # 5.8) Static Properties & Methods
 # 5.9) Singelton class con constructor privado
-# 6) Encapsutation
 
 
 
@@ -472,7 +471,7 @@ Class DB
 {
     public static ?DB $instancia = null;
 
-    private function __construct(public array $config)
+    private function __construct(array $config)
     {
         echo 'Instancia creada';
     }
@@ -493,5 +492,4 @@ $db = DB::getInstance([]);
 $db = DB::getInstance([]);
 $db = DB::getInstance([]);
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 6) Encapsutation
 
