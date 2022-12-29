@@ -495,8 +495,91 @@ $db = DB::getInstance([]);
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 5.10) Magic Methods
 
+# __get() and __set()
 
+class Invoice
+{
+    private float $amout;
+    public function __get(string $name) //se utiliza para consultar datos a partir de propiedades inaccesibles (protegidas o privadas) o inexistentes.
+    {
+        # podemos hacer que devuelva la propiedad si es private por ejemplo:
+        var_dump($name);
+        if (property_exists($this, $name)){
+            return $this->$name;
+        }
 
+        return null;
+    }
+
+    public function __set(string $name,$value):void // se ejecuta al escribir datos sobre propiedades inaccesibles (protegidas o privadas) o inexistentes.
+    {
+        var_dump($name,$value);
+    }
+
+    public function __isset(string $name): bool // se lanza al llamar a isset() o a empty() sobre propiedades inaccesibles (protegidas o privadas) o inexistentes.
+    {
+        echo "¿Está definido '$name'?\n";
+        return isset($this->data[$name]);
+    }
+
+    public function __unset(string $name): void // se invoca cuando se usa unset() sobre propiedades inaccesibles (protegidas o privadas) o inexistentes.
+    {
+        echo "Eliminando '$name'\n";
+        unset($this->data[$name]);
+    }
+
+    public function __call($name, $arguments) // es lanzado al invocar un método inaccesible en un contexto de objeto.
+    {
+        // Nota: el valor $name es sensible a mayúsculas.
+        echo "Llamando al método de objeto '$name' "
+             . implode(', ', $arguments). "\n";
+    }
+
+    public static function __callStatic($name, $arguments) // es lanzado al invocar un método inaccesible en un contexto estático.
+    {
+        // Nota: el valor $name es sensible a mayúsculas.
+        echo "Llamando al método estático '$name' "
+             . implode(', ', $arguments). "\n";
+    }
+}
+
+$invoice = new Invoice();
+
+# Como tenemos definido el metodo magico __get al acceder a una propiedad no existente se ejecutara ese metodo
+echo $invoice->amount; // error undefined propierty 
+
+$invoice->amount = 10; // al setter una propiedad no existente se ejecutara el metodo magico __set
+
+// Declarar una clase simple
+class TestClass
+{
+    public $foo;
+
+    public function __construct($foo)
+    {
+        $this->foo = $foo;
+    }
+    # El método __toString() permite a una clase decidir cómo comportarse cuando se le trata como un string. Por ejemplo, lo que echo $obj; mostraría. 
+    # Este método debe devolver un string, si no se emitirá un nivel de error fatal E_RECOVERABLE_ERROR.
+    public function __toString()
+    {
+        return $this->foo;
+    }
+}
+
+$class = new TestClass('Hola Mundo');
+echo $class;
+
+class CallableClass
+{
+    public function __invoke($x) // es llamado cuando un script intenta llamar a un objeto como si fuera una función.
+    {
+        var_dump($x);
+    }
+}
+$obj = new CallableClass;
+$obj(5);
+var_dump(is_callable($obj));
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
