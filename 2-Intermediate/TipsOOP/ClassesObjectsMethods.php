@@ -17,6 +17,7 @@
 # 5.8) Static Properties & Methods
 # 5.9) Singelton class con constructor privado
 # 5.10) Magic Methods
+# 6) Anonymous Classes
 
 
 
@@ -583,3 +584,17 @@ var_dump(is_callable($obj));
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
+# 6) Anonymous Classes
+
+# Declaración:
+# Se suelen usar mas para el testing
+
+$obj = new class(1,2,3){
+    # Anonymous class puede usar trait, herencia y implement interfaces
+    public function __construct(int $x, int $y, int $z)
+    {
+        
+    }
+};
+
+var_dump($obj);
