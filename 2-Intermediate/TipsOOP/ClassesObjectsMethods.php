@@ -18,6 +18,7 @@
 # 5.9) Singelton class con constructor privado
 # 5.10) Magic Methods
 # 6) Anonymous Classes
+# 7) Object Comparation
 
 
 
@@ -598,3 +599,21 @@ $obj = new class(1,2,3){
 };
 
 var_dump($obj);
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 7) Object Comparation
+
+class Testinvoise
+{
+    public function __construct(public float $amount, public string $description)
+    {
+        
+    }
+}
+
+$invoice = new Testinvoise(33,'test');
+$invoice2 = new Testinvoise(333,'test');
+
+# Mejor comparar objetos con doble igual == porque mira si las propiedades son iguales de valor
+var_dump($invoice == $invoice2);
+var_dump($invoice === $invoice2); // como son dos objetos distintos dara false ya que cada uno esta en una memoria distinta
