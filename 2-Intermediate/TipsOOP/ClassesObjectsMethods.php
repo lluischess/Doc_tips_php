@@ -19,7 +19,8 @@
 # 5.10) Magic Methods
 # 6) Anonymous Classes
 # 7) Object Comparation
-
+# 8) Docblock
+# 9) Clone objects
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
@@ -617,3 +618,40 @@ $invoice2 = new Testinvoise(333,'test');
 # Mejor comparar objetos con doble igual == porque mira si las propiedades son iguales de valor
 var_dump($invoice == $invoice2);
 var_dump($invoice === $invoice2); // como son dos objetos distintos dara false ya que cada uno esta en una memoria distinta
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 8) Docblock
+
+# se utilizan para documentar clases y funciones
+
+
+/**
+ * @property-read Customer $customer
+ * @property-write float $y
+ * 
+ */
+class Testinvoise2
+{
+
+    /** @var Customer */
+    private $customer;
+
+    /**
+     * Some description
+     * 
+     * @param Customer $customer
+     * @param float|int $amount
+     * @param Customer[] $arr
+     * 
+     * @throws \RuntimeException // es para la excepciones
+     * 
+     * @return bool
+     */
+    public function process($customer, $amount, array $arr)
+    {
+        return true;
+    }
+}
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 9) Clone objects
