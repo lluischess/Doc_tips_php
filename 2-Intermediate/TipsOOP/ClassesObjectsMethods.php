@@ -22,6 +22,8 @@
 # 8) Docblock
 # 9) Clone objects
 # 10) serialize and unserialize
+# 11) OOP Error Handling
+
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
@@ -680,3 +682,59 @@ $SerializeArr = serialize($arr);
 var_dump(unserialize($SerializeArr));
 
 # __serialize es un metodo magico de classe y tambien __unserialize
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 11) OOP Error Handling
+
+class Customer1
+{
+    public function __construct( array $billingInfo = [])
+    {
+        
+    }
+
+    public function getBillingInfo()
+    {
+        return $this->billingInfo;
+    }
+}
+
+class Invoice1
+{
+
+    public function __construct( Customer1 $customer)
+    {
+        
+    }
+
+    public function process(float $amount): void
+    {
+        if ($amount <= 0){
+            throw new \Exception('Invalid invoice amount'); // Exception manual
+            throw new \InvalidArgumentException('Invalid amount'); // Exception manual
+        }
+        echo 'Processing $'. $amount . ' invoice -';
+
+        sleep(1);
+
+        echo 'OK'. PHP_EOL;
+    }
+}
+
+class MissingbillingExeption extends \Exception
+{
+    protected $message = 'Missing ammout o 0';
+}
+
+$invoice = new Invoice1(new Customer1());
+
+# Otra manera de captar errores es con try catch
+# podemos ver el mensaje de error el archivo de donde viene y la linea
+try{
+    $invoice->process(-32);
+}catch(\Exception $e){ // Esto lo que hace es pillar la exeption que devuelve desde la function y puedes añadir documentación extra o que haga un codigo diferente
+    echo $e->getMessage(). ' ' . $e->getFile(). ': ' . $e->getLine();
+}finally{
+    echo  'Se ejecuta con el error o sin el error';
+}
+# con throw podemos manejar errores manualmente 
