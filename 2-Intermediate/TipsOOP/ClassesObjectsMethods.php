@@ -21,6 +21,7 @@
 # 7) Object Comparation
 # 8) Docblock
 # 9) Clone objects
+# 10) serialize and unserialize
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
@@ -655,3 +656,27 @@ class Testinvoise2
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 # 9) Clone objects
+
+$invoice = new Testinvoise2();
+
+# Asi se puede crear una copia del objeto, con el mismo valor de las propiedades de la primera invice
+$invoice3 = clone $invoice;
+
+var_dump($invoice, $invoice3, $invoice === $invoice3);
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 10) serialize and unserialize
+
+# Basicamente es una manera de desarmar un valor y volverlo a construir
+#tiene muchos usos lo des-arma y lo deja como una cadena string
+
+#Ejemplo: 
+$arr = [1,2,3];
+
+echo serialize($arr);
+
+$SerializeArr = serialize($arr);
+
+var_dump(unserialize($SerializeArr));
+
+# __serialize es un metodo magico de classe y tambien __unserialize
