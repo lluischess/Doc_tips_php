@@ -23,7 +23,7 @@
 # 9) Clone objects
 # 10) serialize and unserialize
 # 11) OOP Error Handling
-
+# 12) DateTime();
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
@@ -738,3 +738,69 @@ try{
     echo  'Se ejecuta con el error o sin el error';
 }
 # con throw podemos manejar errores manualmente 
+
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 12) DateTime(); esto solo funciona en PHP 8 o superior
+
+# Esta clase de php ya biene definida por el propio php podemos pasar 2 propiedades a su constructor la datetime con string que accepta bastantes cosas
+# Luego le podemos pasar el datetimeZone
+$dateTime = new DateTime('tomorrow', new DateTimeZone('UTC'));
+# Aqui esta el listado de Zonas que se pueden usar https://www.php.net/manual/en/timezones.php
+$dateTime1 = new DateTime('10/10/2022 7:00');
+//$dateTime1 = new DateTime('10/10/2022 7:00', new DateTimeZone('Europe/Andorra'));
+var_dump($dateTime);
+var_dump($dateTime1);
+
+# Compareciónes de Datetime:
+var_dump($dateTime < $dateTime1);
+var_dump($dateTime > $dateTime1);
+var_dump($dateTime == $dateTime1);
+var_dump($dateTime <> $dateTime1);
+
+# Podemos hacer una comparación avanzada con diff
+# devuelve un objeto con todas las diferencias de dias años horas etc
+var_dump($dateTime->diff($dateTime1));
+# Para visualizar mejor acemos el format
+echo $dateTime->diff($dateTime1)->format('%Y years, %m months, %d days, %H, %i, %s'). PHP_EOL;
+
+# Podemos formatear la fecha con la nomenclatura de formato de fecha
+echo $dateTime->format('m/d/Y g:i A') . PHP_EOL;
+
+
+#Podemos ajustar la Hora real del tiempo de cada zona seteandola
+$dateTime1->setTimezone(new DateTimeZone('Europe/Andorra'));
+var_dump($dateTime1);
+
+#Podemos obtener el nombre de la timezone usando el getName
+echo $dateTime->getTimezone()->getName();
+
+#Podemos cambiar el valor de la fecha seteandola
+# Y tambien la Hora
+$dateTime->setDate(2023,1,1)->setTime(4,00,00);
+var_dump($dateTime);
+
+
+#Por defecto cuando guardamos fecha lo guarda en sistema Americano que el mes y el dia estan al reves
+# la mejor solucion es utilizar la funcion de la clase formatocon fecha:
+
+#Ejemplo: le estamos pasando la fecha Europea y dara fatal error porque el dia 15 lo coge como mes 15 que no existe
+$date = '15/05/2022 3:30';
+
+#solución1:
+$datetime3 = new DateTime(str_replace('/','.',$date));
+var_dump($datetime3);
+# Solución2:
+$datetime3 = DateTime::createFromFormat('d/m/Y',$date);
+var_dump($datetime3);
+
+
+# Tambien podemos añadir un interval de tiempo al datatime:
+$date = '03/01/2023 9:15AM';
+$datetime = new DateTime(str_replace('/','.',$date));
+var_dump($datetime);
+$interval = new DateInterval('P3M2D'); // 3meses y 2 dias
+
+$datetime->add($interval);
+
+var_dump($datetime);
