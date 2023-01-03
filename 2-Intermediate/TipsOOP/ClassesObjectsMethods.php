@@ -24,6 +24,7 @@
 # 10) serialize and unserialize
 # 11) OOP Error Handling
 # 12) DateTime();
+# 13) SuperGolbal $_SERVER
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
@@ -804,3 +805,66 @@ $interval = new DateInterval('P3M2D'); // 3meses y 2 dias
 $datetime->add($interval);
 
 var_dump($datetime);
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 13) SuperGolbal $_SERVER
+
+# Esta super global contiene información del servidor y del entorno de ejecución
+echo '<pre>';
+print_r($_SERVER);
+echo '<pre>';
+
+# Con esta super global podemos hacer y trbajar con rutas del entorno (routing)
+#Ejemplo de rutas muy cutre
+
+class Router
+{
+    private array $routes;
+
+    public function register(string $route, callable $action): self // este metodo de devolvera a si mismo
+    {
+        $this->routes[$route] = $action;
+        return $this;
+    }
+
+    public function resolve(string $requestUri)
+    {
+        $route = explode('?', $requestUri)[0];
+        $action = $this->routes[$route] ?? null;
+
+        if (!$action){
+            throw new Exception('No existe ninguna action 404 not fount');
+        }
+
+        return call_user_func($action);// llama a un tipo de datos callable
+    }
+}
+
+class Home
+{
+    public function index(): String
+    {
+        return 'Home';
+    }
+}
+
+class Invoice3
+{
+    public function index(): String
+    {
+        return 'Invoice';
+    }
+}
+
+$router = new Router();
+# Lo suyo seria hacerlo con Controladores pero seria por metodos y class Ejemplo
+$router->register('/', [Home::class, 'index'])
+        ->register('/invoice', [Invoice3::class, 'index']);
+
+$router->register('/', function(){
+    echo '/invoices';
+});
+
+# Estariamos printando la ruta que le hemos pasado al registro
+# Si fueramos a /Home estariamos en Home y en caso de /invoices en invoices y en caso de una inventada daria el error 404
+echo $router->resolve($_SERVER['REQUEST_URI']); // invaices 
