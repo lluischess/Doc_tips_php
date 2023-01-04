@@ -24,7 +24,8 @@
 # 10) serialize and unserialize
 # 11) OOP Error Handling
 # 12) DateTime();
-# 13) SuperGolbal $_SERVER
+# 13) SuperGlobal $_SERVER
+# 14) SuperGlobals $_POST and $_GET and $_REQUEST
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
@@ -807,7 +808,7 @@ $datetime->add($interval);
 var_dump($datetime);
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 13) SuperGolbal $_SERVER
+# 13) SuperGlobal $_SERVER
 
 # Esta super global contiene información del servidor y del entorno de ejecución
 echo '<pre>';
@@ -868,3 +869,23 @@ $router->register('/', function(){
 # Estariamos printando la ruta que le hemos pasado al registro
 # Si fueramos a /Home estariamos en Home y en caso de /invoices en invoices y en caso de una inventada daria el error 404
 echo $router->resolve($_SERVER['REQUEST_URI']); // invaices 
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 14) SuperGlobals $_POST and $_GET and $_REQUEST
+
+# Estas Super globals se utilizan para las request de aplicaciónes y formularrios web o mobiles
+
+# Cuando visitamos una url en la web siempre pasa información en el $_GET
+# Estos parametros guardados en el GET se suelen ver en la URL
+# Si tenemos que pasar un nombre de la WEB o un ID no importante usamos GET
+var_dump($_GET);
+# SE accede medianta array []
+
+# Luego tenemos el $_POST request que es lo mismo que el get pero sin que se pueda ver en la URL es mas seguro
+# Por ejemplo al acceder con un user name utilizaremos POST
+# SE accede medianta array []
+var_dump($_POST);
+
+# Luego tenemos $_REQUEST que es otra super global esta contiene todo lo del get, post y las cookies
+var_dump($_REQUEST);
+# Tener en cuenta que si usamos request y hay una variable duplicada en get y post solo se vera la del post en el request
