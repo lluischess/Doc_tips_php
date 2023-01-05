@@ -26,6 +26,7 @@
 # 12) DateTime();
 # 13) SuperGlobal $_SERVER
 # 14) SuperGlobals $_POST and $_GET and $_REQUEST
+# 15) SuperGlobals $_SESSIONS and $_COOKIES
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
@@ -889,3 +890,39 @@ var_dump($_POST);
 # Luego tenemos $_REQUEST que es otra super global esta contiene todo lo del get, post y las cookies
 var_dump($_REQUEST);
 # Tener en cuenta que si usamos request y hay una variable duplicada en get y post solo se vera la del post en el request
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 15) SuperGlobals $_SESSIONS and $_COOKIES
+
+#la Global sessiones es destruida automaticamente cuando el navegador se cierra
+# en cambio las cookis pueden mantenerse hasta caducarse en cierto tiempo o hasta que se destruyan
+
+# Iniciar session:
+session_start(); // se suele poner al principio del archivo
+# Esto creara una cookie de session PHPSESSID
+var_dump($_SESSION);
+# Podemos eliminar la session con el unset
+unset($_SESSION['count']);
+
+# Para setear y crear una cookie usamos esto:
+setcookie(
+    'NombreCookie',
+    'ValorCookie',
+    time() + 10, // Tiempo de vida de la cookie hasta que desaparezca
+    '/', // path de la ruta
+    '', // Dominio
+    false, // Seguridad
+    false 
+); // La cookie se suele setear antes de imprimir cualquier cosa
+
+
+# Para eliminar la cooki tenemos que pasar la cookie en negativo
+setcookie(
+    'NombreCookie',
+    'ValorCookie',
+    time() - 10, // Tiempo en negativo
+    '/', // path de la ruta
+    '', // Dominio
+    false, // Seguridad
+    false 
+); 
