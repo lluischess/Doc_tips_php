@@ -27,6 +27,8 @@
 # 13) SuperGlobal $_SERVER
 # 14) SuperGlobals $_POST and $_GET and $_REQUEST
 # 15) SuperGlobals $_SESSIONS and $_COOKIES
+# 16) PHP file upload $_FILES
+
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
@@ -926,3 +928,24 @@ setcookie(
     false, // Seguridad
     false 
 ); 
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 16) PHP file upload $_FILES
+
+# Antes de todo tenemos que dejar claro que en un form para subir archivos al servidor etc hay que añadir el atributo enctype="multipart/form-data"
+?>
+<form action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="recipe"/>
+    <button type="submit">Upload</button>
+
+</form>
+
+<?php
+# Con esta super global podriamoss mirar alguna informacion importante del archivo en si
+var_dump($_FILES);
+
+# Podemos mover el archivo de carpeta usando esta funcion
+move_uploaded_file($_FILES['recipe']['tmp_name'], __DIR__.'../TipsOOP/'.$_FILES['recipe']['name']); 
+
+# O podemos guardar como array usando el mismo name en el form para guardarlo todo en el $_FILES
+# C:\wamp64\www\php_Docs\2-Intermediate\TipsOOP\FILES añadir multiples archivos en array.PNG
