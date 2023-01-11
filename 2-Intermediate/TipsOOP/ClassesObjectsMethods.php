@@ -28,6 +28,7 @@
 # 14) SuperGlobals $_POST and $_GET and $_REQUEST
 # 15) SuperGlobals $_SESSIONS and $_COOKIES
 # 16) PHP file upload $_FILES
+# 17) HTTP Headers 
 
 
 
@@ -949,3 +950,27 @@ move_uploaded_file($_FILES['recipe']['tmp_name'], __DIR__.'../TipsOOP/'.$_FILES[
 
 # O podemos guardar como array usando el mismo name en el form para guardarlo todo en el $_FILES
 # C:\wamp64\www\php_Docs\2-Intermediate\TipsOOP\FILES añadir multiples archivos en array.PNG
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 17) HTTP Headers 
+
+# Siempre que se visite una Web, se envie un formulario o realizar cualquier accion que accione una request
+# automaticamente el cliente are una http request al servidor y el servicor devolvera una response al cliente
+
+# 2 Imagenes Importantes:
+#C:\wamp64\www\php_Docs\2-Intermediate\TipsOOP\httpRequest_Response.PNG
+#C:\wamp64\www\php_Docs\2-Intermediate\TipsOOP\Response StatusCodes.PNG
+
+# Se pueden cambiar los headers de esta manera:
+header('HTTP/1.1 404 Not Found');
+
+# Existe una manera mejor de modificar los estados de response code
+http_response_code(404);
+# Los headers tienen que ser enviados antes que cualquier output
+
+# Con el header tambien podemos redirigir:
+header('Location: /'); //homepage
+# Con esto de los headers estamos aplicando cosas que se aran al cargar la pagina web aplicara esos headers
+header('Content-Type: application/pdf');
+header('Content-Disposition: attachment;filename"myfile.pdf"');
+
