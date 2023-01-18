@@ -7,7 +7,9 @@
 # 4) BBDD y PHP
 # 5) Enable PDO with mySQL
 # 6) PDO connection and Uses
-# 7) Injection SQL
+# 7) Injection SQL and how to prevent
+# 9) Databases Transactions
+# 10) .env 
 
 
 
@@ -76,7 +78,7 @@ class HomeController
         // Si usamos un Docker y tenemos un contenedor con un nombre por ejemplo db, sustitumos el host=db
         # IMPORTANTE: si hay un problema de credenciales el mensaeje de error mostrara contraseña etc, para evitar eso hay que hacer u ntry catch y modificar el mensaje del error
         try{
-            $db = new PDO('mysql:host=localhost;dbname=store_db','root','', [
+            $db = new PDO('mysql:host=localhost;dbname=store_db','root','', [ // # go to 10) .env 
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_BOTH // podemos configurar un sistema de fetch para todos los fetch es opcional a gustos
             ]); // ESTA class PDO ya existe // tiene otro parametra para pasar una lista de opciones 
         } catch(\PDOException $error){
@@ -95,13 +97,13 @@ class HomeController
 
         # EJEMPLO 2 iteramos la select
         foreach($db->query($query) as $product)
-        {
+        { 
             echo '<per>';
             var_dump($product);
             echo '</per>';
         }
         #----------------------------------------------------------------------------------------------------------------------------------------------
-        # 7) Injection SQL
+        # 7) Injection SQL and how to prevent
 
         # Si queresmos trabajar con querys es todo correcto pero hay una cosa IMPORTANTE
         # Si trabajamos con contraseñas o usuarios la function query es vulnerable a injection SQL
@@ -172,6 +174,62 @@ class HomeController
             'rol' => $rol,
             'date' => $createdAt]); // No hace falta que esten por orden de los parametros el rol puede ir primero o donde sea igual que los otros
 
+
+        #----------------------------------------------------------------------------------------------------------------------------------------------
+        # 9) Databases Transactions
+
+        # Son un conjunto de consultas que se tienen que ejecutar todas al mismo tiempo para que todo funcione correctamente si una de las consultas falla hay que hacer RollBack
+        # Por ello se suelen Transactions ya que asi las agrupamos
+        # Un ejemplo en una imagen: C:\wamp64\www\php_Docs\2-Intermediate\DataBaseTransactions.PNG
+
+        # Ejemplo de codigo Practico:
+
+        $email = 'lluis@hotmail.com';
+        $name = 'lluis';
+        $amount = 25;
+        try{
+            // Iniciamos la transacción
+            $db->beginTransaction();
+            // Preparación de las Queris
+            $newUserStmt = $db->prepare(
+                'INSERT INTO users (email, full_name, is_active, created_at)
+                VALUES (?, ?, 1, NOW())'
+            );
+            $newInvoiceStmt = $db->prepare(
+                'INSERT INTO invoices (user_id, amount)
+                VALUES (?, ?)'
+            );
+            
+            $newUserStmt->execute([$email,$name]); // aqui acabamos de añadir a la bd el usuario
+            $userId = (int) $db->lastInsertId(); // pillamos el id del ultimo registro insertado
+
+            $newInvoiceStmt->execute([$userId,$amount]);
+
+            // hacemos el commit de toda la transacción
+            $db->commit();
+
+        }catch(\Throwable $error){
+            if ($db->inTransaction()){ // si esta en medio de una transaction podemos hacer lo siguiente
+                $db->rollBack(); // si algo falla hacemos un rollback de los cambios de la transacción bbdd
+            }
+        }
+
+        // Preparamos la fetch date de los usuarios y de las invoices
+        $fetchdata = $db->prepare(
+            'SELECT invoices.id AS invoice_id, amount, user_id, full_name
+             FROM invoices
+             INNER JOIN users ON user_id = users.id
+             WHERE email = ?'
+        );
+
+        $fetchdata->execute([$email]);
+
+        // Printamos
+        echo '<per>';
+        var_dump($fetchdata->fetch(PDO::FETCH_ASSOC));
+        echo '</per>';
+
+        
         return View::home('index');
     }
 }
@@ -185,7 +243,26 @@ class View
 }
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
+# 10) .env 
 
+# Normalmente por seguridad no podemos tener las credenciales de la bbdd en el codigo puede ser un error muy grave de seguridad
+# La solucion es añadirlo en el archivo de entornos .env 
+
+# Las variables de entorno se guardan en ese archivo
+# Es importante hacer un git ignore para no commitear ese archivo .env 
+# El que si podemos commitear es este: C:\wamp64\www\php_Docs\2-Intermediate\.env.example 
+# ya que es el ejemplo sin las credenciales
+
+# Ejemplo
+# C:\wamp64\www\php_Docs\2-Intermediate\TipsOOP\.env
+
+# Podemos instalar el sistema para hacer funcionar el .env con composer:
+# CODIGO: composer require vlucas/phpdotenv 
+
+# Aqui estan las Instrucciónes: https://github.com/vlucas/phpdotenv
+
+# Una vez este todo configurado podremos acceder a las variables por la SUPER GLOBAL:
+var_dump($_ENV['DB_HOST']);
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
 
