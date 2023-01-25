@@ -3,8 +3,8 @@
 # INDEX 
 # 1) Tipos de testing
 # 2) Que es TDD y BDD
-# 3) 
-# 4) 
+# 3) PHPUnit Framework
+# 4) PHPUnit Framework configure
 
 
 
@@ -35,3 +35,28 @@
 
 # BDD: Behavior Driven Development
 # En BDD los test se escriben antes que realizar el codigo
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 3) PHPUnit Framework
+
+# Es un frameword orientado a testing 
+# Enlace de descarga: https://phpunit.de/
+
+# lo Instalaremos con composer via comando: composer require --dev phpunit/phpunit ^9.5
+
+# Todas las pruebas estaran en el directorio sigiente con la estructura del framework
+# C:\wamp64\www\php_Docs\3-Advance\PHPUnit
+
+# Para empezar a utilizarlo tendremos que ir a este archivo mediante consola y nos dara todos los comandos que tenemos a nuestro alcance:
+# ./vendor/bin/phpunit
+
+# si no queremos ir añadiendo toda la ruta para ir ejecutando los codigos podemos crear un alias
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 4) PHPUnit Framework configure
+
+# First of all we have to configure the test creating the configurationfile:
+# si no esta crealo en la ruta del proyecto
+# C:\wamp64\www\php_Docs\3-Advance\PHPUnit\phpunit.xml
+
+# En nuestro caso e quitado bootstrap porque no lo usamos
