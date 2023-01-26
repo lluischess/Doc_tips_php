@@ -5,6 +5,7 @@
 # 2) Que es TDD y BDD
 # 3) PHPUnit Framework
 # 4) PHPUnit Framework configure
+# 5) Proyecto con testing
 
 
 
@@ -60,3 +61,8 @@
 # C:\wamp64\www\php_Docs\3-Advance\PHPUnit\phpunit.xml
 
 # En nuestro caso e quitado bootstrap porque no lo usamos
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 5) Proyecto con testing
+
+# Ruta:  C:\wamp64\www\php_Docs\3-Advance\PHPUnit\ProjectUsingPHPUNIT
