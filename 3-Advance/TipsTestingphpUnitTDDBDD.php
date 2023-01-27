@@ -6,6 +6,7 @@
 # 3) PHPUnit Framework
 # 4) PHPUnit Framework configure
 # 5) Proyecto con testing
+# 6) Proyecto con testing con dependencias (Test Doubles, Stubs y Mocking)
 
 
 
@@ -63,6 +64,20 @@
 # En nuestro caso e quitado bootstrap porque no lo usamos
 
 #----------------------------------------------------------------------------------------------------------------------------------------------
-# 5) Proyecto con testing
+# 5) Proyecto con testing (Unitario)
 
 # Ruta:  C:\wamp64\www\php_Docs\3-Advance\PHPUnit\ProjectUsingPHPUNIT
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 6) Proyecto con testing con dependencias (Test Doubles, Stubs y Mocking)
+
+# Ruta: C:\wamp64\www\php_Docs\3-Advance\PHPUnit\ProjectPHPUnitDependency
+
+# En este caso si queremos solo hacer los test de un solo archivo y no todos los test hay que poner lo siguiente por consola:
+# ./vendor/bin/phpunit tests/Unit/Services/InvoiceServiceTest.php
+
+# Los mocks son clases o metodos ficticios que podemos usar en testing para remplazar las clases y metodos ficticios por las clases y metodos reales que tenemos en el programa
+# El mocking se usa mucho para por ejemplo usarlo en modelos que se relacionan con la BDD o sms email servicios y en api calls.
+# Eso es porque no enviarias cada vez que haces un test un email real o una llamada a la api real lo cual podria molestar a diversos factores como clientes o datos etc.
+
+#----------------------------------------------------------------------------------------------------------------------------------------------
