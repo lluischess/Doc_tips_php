@@ -72,10 +72,13 @@
 
 # - docker run [imagen]:[version] : Esto es un todo en uno DESCARGA/CREA/INICIA
 # - docker run -d [imagen]:[version] : Esto es un todo en uno DESCARGA/CREA/INICIA pero sin iniciar logs
-
-
+#--------------------------------------------------
+# Poder ejecutar un codigo de un contenedor en la maquina
 # Crear un ejemplo de Docker de una mini app en php laravel:
 
+
+#--------------------------------------------------
+# DOCKERFILE : es el archivo obligatorio para añadir nuestra app dentro de un contenedor
 
 
 
