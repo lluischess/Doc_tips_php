@@ -89,6 +89,25 @@
 #--------------------------------------------------
 # DOCKERFILE : es el archivo obligatorio para añadir nuestra app dentro de un contenedor
 
+# es un archivo para autogenerar los contenedores dentro de un proyecto:
+# Hay que especificar lo siguiente:
+
+# Esto es para indicar en que se basa la Imagen en este caso node, y despues de los : el tag de la imagen a la que hace referencia
+// FROM node:18
+
+# Ahora tendriamos que crear una carpeta donde se guarde nuestra imagen
+# Esta carpeta no es de nuestra maquina fisica, es del contenedor de linux
+# En esa carpeta app es donde guardaremos todo el proyecto
+// RUN mkdir -p /home/app
+
+# Pero para que funcione el codigo de run que es el sistema linux hay que decirle de donde copiara los archivos del proyecto.
+# En nuestro caso los copiara de una carpeta de nuestro sistema fisico situada en
+// COPY . /home/app
+
+// EXPOSE 3000
+
+// CMD ["node", "/home/app/index.js"]
+
 
 
 
