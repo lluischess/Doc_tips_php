@@ -74,7 +74,16 @@
 # - docker run -d [imagen]:[version] : Esto es un todo en uno DESCARGA/CREA/INICIA pero sin iniciar logs
 #--------------------------------------------------
 # Poder ejecutar un codigo de un contenedor en la maquina
-# Crear un ejemplo de Docker de una mini app en php laravel:
+# Crear un ejemplo de Docker de una mini app en mongo:
+# Como asignar una imagen de Docker a un proyecto y configurarla:
+# Este ejemplo es el de HolaMundo con js y la imagen de MongoDB
+
+# Primero nos descargamos la imagen con pull
+# Ejemplo : le decimos que el puerto 27017 del pcServer apunte al 27017 de la imagen de mongo, le ponemos un nombre al contenedor creado y le pasamos las variables de entorno para configurar la BBDD.
+# docker create -p27017:27017 --name monguito -e MONGO_INITDB_ROOT_USERNAME=nico -e MONGO_INITDB_ROOT_PASSWORD=password mongo
+# despues lo iniciamos con start y apareceria esto con docker ps
+// CONTAINER ID   IMAGE     COMMAND                  CREATED              STATUS          PORTS                      NAMES
+// c94473486dfd   mongo     "docker-entrypoint.s…"   About a minute ago   Up 10 seconds   0.0.0.0:27017->27017/tcp   monguito
 
 
 #--------------------------------------------------
