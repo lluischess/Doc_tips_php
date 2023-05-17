@@ -2,9 +2,11 @@
 
 # INDEX 
 # 1) Que es Docker?
-# 2) 
-# 3) 
-# 4) 
+# 2) Como instalar
+# 3) Comandos de Docker
+# 4) DOCKERFILE
+# 5) Agrupar por redes los contenedores
+# 6) Docker compose
 
 
 
@@ -25,12 +27,16 @@
 # Cliente 2: Windows | php 7.0 MySQL 8 Configurations
 # CLiente 3: Windows | php 7.4 Mysql 8 Configurations
 
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 2) Como instalar
 # Esto significa que los desplieges se vuelven mucho mas faciles. Ya que son Portables.
 
 # 1- Primero hay que instalar Docker Deskctop Para gestionar nuestros contenedores e imagenes
 
 # 2- Tenemos Docker hub que es como un github pero de contenedores e imagenes, los cuales podemos usar.
 
+#----------------------------------------------------------------------------------------------------------------------------------------------
+# 3) Comandos de Docker
 # Comandos de Docker Utiles:
 # - docker images : Te Printa un listado de Imagenes que tienes en el sistema
 # Ejemplo:
@@ -87,6 +93,8 @@
 
 
 #--------------------------------------------------
+# 4) DOCKERFILE
+
 # DOCKERFILE : es el archivo obligatorio para añadir nuestra app dentro de un contenedor
 
 # es un archivo para autogenerar los contenedores dentro de un proyecto:
@@ -116,6 +124,7 @@
 
 
 #--------------------------------------------------
+# 5) Agrupar por redes los contenedores
 # Como conectar contenedores entre ellos mismos y no con el host PCserver que ya lo hemos hecho.
 
 # Para agrupar contenedores hay que agruparlos en una red interna en la que añadiremos los contenedores que queremos y con esto todos los contenedores se veran entre si.
@@ -130,5 +139,5 @@
 # docker create -p3000:3000 --name [nombre] --network [mired] [variables de entorno] [nombre]:[tag]
 # Como estaran dentro de la misma red se podran ver entre ellos
 
-
-
+#--------------------------------------------------
+# 6) Docker compose
