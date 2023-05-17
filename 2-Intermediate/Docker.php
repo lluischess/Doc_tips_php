@@ -104,10 +104,31 @@
 # En nuestro caso los copiara de una carpeta de nuestro sistema fisico situada en
 // COPY . /home/app
 
+# esto esta indicando que el contenedor estara escuchando el puerto en este caso 3000
 // EXPOSE 3000
 
+# esto ejecutara un comando cuando nuestro contenedor se inicie, aqui lo que ara sera ejecutar nuestro archivo index.js
 // CMD ["node", "/home/app/index.js"]
 
+# Estando en la ruta de Dockerfile
+# COMANDO para crear una imagen de un contenedor a partir de un archivo DOCKERFILE : docker build -t [nombre]:[tag lo que queramos] [Ruta por ejemplo: . es donde te encuentras]
+# podemos hacer un ls para encontrar el dockerfile
+
+
+#--------------------------------------------------
+# Como conectar contenedores entre ellos mismos y no con el host PCserver que ya lo hemos hecho.
+
+# Para agrupar contenedores hay que agruparlos en una red interna en la que añadiremos los contenedores que queremos y con esto todos los contenedores se veran entre si.
+# Tambien podemos tener multiples redes de contenedores
+# COMANDO para ver las redes de Docker: docker network ls
+
+# COMANDO para crear una red : docker network create [nombre de red]
+# COMANDO para eliminar una red : docker network rm [nombre de red]
+
+# Para asignar un contenedor a nuestra red se hace en el momento de create EJEMPLO : 
+# docker create -p27017:27017 --name monguito --network [mired] [variables de entorno] [Nombre imagen]
+# docker create -p3000:3000 --name [nombre] --network [mired] [variables de entorno] [nombre]:[tag]
+# Como estaran dentro de la misma red se podran ver entre ellos
 
 
 
