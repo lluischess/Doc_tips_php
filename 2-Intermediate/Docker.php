@@ -141,3 +141,41 @@
 
 #--------------------------------------------------
 # 6) Docker compose
+
+# Es un archivo el cual tiene que estar junto con Dockerfile y se llama docker-compose.yml 
+# esta guardado como archivo yaml que es un lenguaje de configuraciones.
+
+
+# Primero especificamos la sintaxis de la versión de DockerCompose
+//version: "3.8"
+
+# Luego especificamos el services: el servicio
+//services:
+
+# y es obligatorio tabular 
+
+# Por ultimo especificamos el nombre de los contenedores y todo lo que tendran
+# EJEMPLO COMPLETO:
+
+// version: "3.9"
+
+// services:
+//   App_lluis:
+//     build: .
+//     ports:
+//       - "3000:3000"
+//     links:
+//       - bbdd_lluis
+
+//   bbdd_lluis:
+//     image: mongo
+//     ports:
+//       - "27017:27017"
+//     environment:
+//       - MONGO_INITDB_ROOT_USERNAME=nico
+//       - MONGO_INITDB_ROOT_PASSWORD=passwod
+
+
+# Una vez teniendo el docker-compose montado, hay que saber usarlo con los siguientes comandos:
+# docker compose up : Se encarga de contruir todo los contenedores y ejecutarlos todo en uno
+
