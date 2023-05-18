@@ -178,4 +178,5 @@
 
 # Una vez teniendo el docker-compose montado, hay que saber usarlo con los siguientes comandos:
 # docker compose up : Se encarga de contruir todo los contenedores y ejecutarlos todo en uno
-
+# con Control+c pararemos la ejecucion de los contenedores
+# docker compose down es para eliminar los contenedores ejecutados y elminar las imagenes del sistema
