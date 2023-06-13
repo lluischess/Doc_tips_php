@@ -234,4 +234,4 @@
 
 # Y le modificamos la ruta de los volumes para no usar los mismos datos
 
-# y para ejecutarlo en terminal: docker compose -f docker-compose-dev.yml (Este comando es para ejecutar el archivo de compose personalizado y no el base)
+# y para ejecutarlo en terminal: docker compose -f docker-compose-dev.yml up (Este comando es para ejecutar el archivo de compose personalizado y no el base)
