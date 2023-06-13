@@ -212,3 +212,26 @@
 //       - mongo-data: ../src:/var/www
 // Volumes:
 //  mongo-data: 
+
+
+#--------------------------------------------------
+
+# 8) Crear diferentes abientes de trabajo
+
+# crearemos un archivo Dockerfile.dev para desarrollo
+# con lo mismo que el otro dockerfile
+
+# Le añadiremos un nuevo RUN npm i -g nodemon por ejemplo
+# Y un nuevo WORKDIR /home/app
+
+
+# Luego crearemos otro docker-compose-dev.yml 
+# cojemos el otro como base y cambiamos:
+# biuld:
+#    context: .
+#    dockerfile: Dokerfile.dev
+
+
+# Y le modificamos la ruta de los volumes para no usar los mismos datos
+
+# y para ejecutarlo en terminal: docker compose -f docker-compose-dev.yml (Este comando es para ejecutar el archivo de compose personalizado y no el base)
