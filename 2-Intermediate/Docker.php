@@ -7,6 +7,8 @@
 # 4) DOCKERFILE
 # 5) Agrupar por redes los contenedores
 # 6) Docker compose
+# 7) VOLUMES: para trabajar con datos guardados en la misma maquina amfitrion sin perderlos
+# 8) Crear diferentes abientes de trabajo
 
 
 
@@ -180,3 +182,33 @@
 # docker compose up : Se encarga de contruir todo los contenedores y ejecutarlos todo en uno
 # con Control+c pararemos la ejecucion de los contenedores
 # docker compose down es para eliminar los contenedores ejecutados y elminar las imagenes del sistema
+
+#--------------------------------------------------
+# 7) VOLUMES:
+
+# hay que tener en cuenta que al eliminar un Conteiner podemos eliminar los datos almacenados
+
+# Existe una Herramiente para mantener los datos en tu pc llamada VOLUMES
+
+# Existen 3 tipos de volumes:
+# 1 - el anonimo el cual solo indicamos la ruta donde montaremos los datos en el anfitrion, pero no se pueden
+# referenciar para que luego lo use otro contenedor.
+
+# 2 - De anfitrion o host 
+
+# 3 - Nombrado se puede reutilizar
+
+// nginx:
+//     image: nginx:1.19-alpine
+//     container_name: EstructuraProyectoDocker-nginx
+//     restart: always
+//     ports:
+//       - "8000:80"
+    
+//     # Se define asi los volumes
+//     volumes:
+//       - ../src:/var/www
+//       - ./nginx:/etc/nginx/conf.d
+//       - mongo-data: ../src:/var/www
+// Volumes:
+//  mongo-data: 
